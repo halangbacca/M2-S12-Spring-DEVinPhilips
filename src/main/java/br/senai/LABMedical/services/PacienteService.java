@@ -31,4 +31,8 @@ public class PacienteService {
         return new ListagemPacientes(paciente);
     }
 
+    public void deleta(Long id) {
+        repository.deleteById(id);
+    }
+
 }

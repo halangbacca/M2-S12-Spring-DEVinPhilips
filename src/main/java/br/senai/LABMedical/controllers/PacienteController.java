@@ -32,4 +32,9 @@ public class PacienteController {
         return service.busca(id);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleta(@PathVariable Long id) {
+        service.deleta(id);
+    }
+
 }

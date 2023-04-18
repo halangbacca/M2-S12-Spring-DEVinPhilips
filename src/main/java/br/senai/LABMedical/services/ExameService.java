@@ -26,4 +26,8 @@ public class ExameService {
         return new ListagemExames(exame);
     }
 
+    public void deleta(Long id) {
+        repository.deleteById(id);
+    }
+
 }

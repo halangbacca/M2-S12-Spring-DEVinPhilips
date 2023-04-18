@@ -25,4 +25,8 @@ public class ConsultaService {
         return new ListagemConsultas(consulta);
     }
 
+    public void deleta(Long id) {
+        repository.deleteById(id);
+    }
+
 }
