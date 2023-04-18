@@ -6,8 +6,6 @@ import br.senai.LABMedical.models.Consulta;
 import br.senai.LABMedical.repositories.ConsultaRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ConsultaService {
 
@@ -20,10 +18,6 @@ public class ConsultaService {
     public void cadastra(ConsultaDTO consultaDTO) {
         Consulta consulta = new Consulta(consultaDTO);
         repository.save(consulta);
-    }
-
-    public List<ListagemConsultas> busca() {
-        return repository.findAll().stream().map(ListagemConsultas::new).toList();
     }
 
     public ListagemConsultas busca(Long id) {

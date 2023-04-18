@@ -6,8 +6,6 @@ import br.senai.LABMedical.services.ConsultaService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/consultas")
 public class ConsultaController {
@@ -20,11 +18,6 @@ public class ConsultaController {
     @PostMapping
     public void cadastra(@RequestBody @Validated ConsultaDTO consultaDTO) {
         service.cadastra(consultaDTO);
-    }
-
-    @GetMapping
-    public List<ListagemConsultas> busca() {
-        return service.busca();
     }
 
     @GetMapping("/{id}")

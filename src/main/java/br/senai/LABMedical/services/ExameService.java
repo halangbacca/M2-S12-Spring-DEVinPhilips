@@ -21,10 +21,6 @@ public class ExameService {
         repository.save(exame);
     }
 
-    public List<ListagemExames> busca() {
-        return repository.findAll().stream().map(ListagemExames::new).toList();
-    }
-
     public ListagemExames busca(Long id) {
         var exame = repository.getReferenceById(id);
         return new ListagemExames(exame);

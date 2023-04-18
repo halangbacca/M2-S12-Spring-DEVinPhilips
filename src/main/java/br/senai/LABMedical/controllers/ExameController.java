@@ -6,8 +6,6 @@ import br.senai.LABMedical.services.ExameService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/exames")
 public class ExameController {
@@ -20,11 +18,6 @@ public class ExameController {
     @PostMapping
     public void cadastra(@RequestBody @Validated ExameDTO exameDTO) {
         service.cadastra(exameDTO);
-    }
-
-    @GetMapping
-    public List<ListagemExames> busca() {
-        return service.busca();
     }
 
     @GetMapping("/{id}")
