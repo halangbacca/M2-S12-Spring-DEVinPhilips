@@ -1,9 +1,12 @@
 package br.senai.LABMedical.services;
 
 import br.senai.LABMedical.dtos.ExameDTO;
+import br.senai.LABMedical.dtos.ListagemExames;
 import br.senai.LABMedical.models.Exame;
 import br.senai.LABMedical.repositories.ExameRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ExameService {
@@ -16,6 +19,15 @@ public class ExameService {
     public void cadastra(ExameDTO exameDTO) {
         Exame exame = new Exame(exameDTO);
         repository.save(exame);
+    }
+
+    public List<ListagemExames> busca() {
+        return repository.findAll().stream().map(ListagemExames::new).toList();
+    }
+
+    public ListagemExames busca(Long id) {
+        var exame = repository.getReferenceById(id);
+        return new ListagemExames(exame);
     }
 
 }
