@@ -1,6 +1,6 @@
 package br.senai.LABMedical.services;
 
-import br.senai.LABMedical.dtos.ListagemEndereco;
+import br.senai.LABMedical.dtos.ListagemEnderecos;
 import br.senai.LABMedical.repositories.EnderecoRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +14,8 @@ public class EnderecoService {
         this.repository = repository;
     }
 
-    public List<ListagemEndereco> busca() {
-        return repository.findAll().stream().map(ListagemEndereco::new).toList();
+    public List<ListagemEnderecos> busca() {
+        return repository.findAll().stream().map(ListagemEnderecos::new).toList();
     }
 
 }

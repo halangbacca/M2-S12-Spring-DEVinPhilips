@@ -1,6 +1,6 @@
 package br.senai.LABMedical.controllers;
 
-import br.senai.LABMedical.dtos.ListagemEndereco;
+import br.senai.LABMedical.dtos.ListagemEnderecos;
 import br.senai.LABMedical.services.EnderecoService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +18,7 @@ public class EnderecoController {
     }
 
     @GetMapping
-    public List<ListagemEndereco> busca() {
+    public List<ListagemEnderecos> busca() {
         return service.busca();
     }
 

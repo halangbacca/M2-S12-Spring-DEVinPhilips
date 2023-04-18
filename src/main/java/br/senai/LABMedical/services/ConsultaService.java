@@ -1,5 +1,6 @@
 package br.senai.LABMedical.services;
 
+import br.senai.LABMedical.dtos.AtualizaConsultas;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
@@ -27,6 +28,28 @@ public class ConsultaService {
 
     public void deleta(Long id) {
         repository.deleteById(id);
+    }
+
+    public void atualiza(AtualizaConsultas consultaAtualizada, Long id) {
+        Consulta consulta = repository.findById(id).orElseThrow(RuntimeException::new);
+
+        if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {
+            consulta.setMotivo(consultaAtualizada.motivo());
+        }
+
+        if (consultaAtualizada.descricao() != null && !consultaAtualizada.descricao().isEmpty()) {
+            consulta.setDescricao(consultaAtualizada.descricao());
+        }
+
+        if (consultaAtualizada.medicacao() != null && !consultaAtualizada.medicacao().isEmpty()) {
+            consulta.setMedicacao(consultaAtualizada.medicacao());
+        }
+
+        if (consultaAtualizada.dosagem() != null && !consultaAtualizada.dosagem().isEmpty()) {
+            consulta.setDosagem(consultaAtualizada.dosagem());
+        }
+
+        repository.save(consulta);
     }
 
 }

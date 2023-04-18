@@ -1,7 +1,7 @@
 package br.senai.LABMedical.services;
 
 import br.senai.LABMedical.dtos.ListagemConsultas;
-import br.senai.LABMedical.dtos.ListagemEstatisticas;
+import br.senai.LABMedical.dtos.EstatisticasDTO;
 import br.senai.LABMedical.dtos.ListagemExames;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.repositories.ConsultaRepository;
@@ -23,7 +23,7 @@ public class EstatisticaService {
         this.exameRepository = exameRepository;
     }
 
-    public ListagemEstatisticas estatisticas(ListagemEstatisticas estatisticas) {
+    public EstatisticasDTO estatisticas(EstatisticasDTO estatisticas) {
         estatisticas.setPacientes(pacienteRepository.findAll().stream().map(ListagemPacientes::new).toList().size());
         estatisticas.setConsultas(consultaRepository.findAll().stream().map(ListagemConsultas::new).toList().size());
         estatisticas.setExames(exameRepository.findAll().stream().map(ListagemExames::new).toList().size());
