@@ -1,4 +1,17 @@
 package br.senai.LABMedical.dtos;
 
-public record AtualizaExames() {
+import jakarta.validation.constraints.NotBlank;
+
+public record AtualizaExames(
+        Long id,
+        @NotBlank
+        String nome,
+        @NotBlank
+        String tipo,
+        @NotBlank
+        String laboratorio,
+        @NotBlank
+        String pdf,
+        @NotBlank
+        String resultados) {
 }
