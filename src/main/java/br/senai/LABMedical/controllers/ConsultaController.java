@@ -32,7 +32,7 @@ public class ConsultaController {
     }
 
     @PutMapping("/{id}")
-    public void atualiza(@RequestBody AtualizaConsultas consultaAtualizada, @PathVariable Long id) {
+    public void atualiza(@RequestBody @Validated AtualizaConsultas consultaAtualizada, @PathVariable Long id) {
         service.atualiza(consultaAtualizada, id);
     }
 

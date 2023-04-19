@@ -32,7 +32,7 @@ public class ExameController {
     }
 
     @PutMapping("/{id}")
-    public void atualiza(@RequestBody AtualizaExames exameAtualizado, @PathVariable Long id) {
+    public void atualiza(@RequestBody @Validated AtualizaExames exameAtualizado, @PathVariable Long id) {
         service.atualiza(exameAtualizado, id);
     }
 

@@ -1,4 +1,6 @@
 package br.senai.LABMedical.dtos;
 
-public record AtualizaSenhaUsuario() {
+import jakarta.validation.constraints.NotBlank;
+
+public record AtualizaSenhaUsuario(@NotBlank String senha) {
 }
