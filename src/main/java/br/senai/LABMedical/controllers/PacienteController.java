@@ -1,5 +1,7 @@
 package br.senai.LABMedical.controllers;
 
+import br.senai.LABMedical.dtos.AtualizaExames;
+import br.senai.LABMedical.dtos.AtualizaPacientes;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.services.PacienteService;
@@ -35,6 +37,11 @@ public class PacienteController {
     @DeleteMapping("/{id}")
     public void deleta(@PathVariable Long id) {
         service.deleta(id);
+    }
+
+    @PutMapping("/{id}")
+    public void atualiza(@RequestBody AtualizaPacientes pacienteAtualizado, @PathVariable Long id) {
+        service.atualiza(pacienteAtualizado, id);
     }
 
 }

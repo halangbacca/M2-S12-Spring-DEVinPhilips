@@ -1,5 +1,6 @@
 package br.senai.LABMedical.services;
 
+import br.senai.LABMedical.dtos.AtualizaPacientes;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.models.Paciente;
@@ -33,6 +34,68 @@ public class PacienteService {
 
     public void deleta(Long id) {
         repository.deleteById(id);
+    }
+
+    public void atualiza(AtualizaPacientes pacienteAtualizado, Long id) {
+        Paciente paciente = repository.findById(id).orElseThrow(RuntimeException::new);
+
+        if (pacienteAtualizado.nome() != null && !pacienteAtualizado.nome().isEmpty()) {
+            paciente.setNome(pacienteAtualizado.nome());
+        }
+
+        if (pacienteAtualizado.genero() != null && !pacienteAtualizado.genero().isEmpty()) {
+            paciente.setGenero(pacienteAtualizado.genero());
+        }
+
+        if (pacienteAtualizado.dataNascimento() != null && !pacienteAtualizado.dataNascimento().isEmpty()) {
+            paciente.setDataNascimento(pacienteAtualizado.dataNascimento());
+        }
+
+        if (pacienteAtualizado.estadoCivil() != null) {
+            paciente.setEstadoCivil(pacienteAtualizado.estadoCivil());
+        }
+
+        if (pacienteAtualizado.telefone() != null && !pacienteAtualizado.telefone().isEmpty()) {
+            paciente.setTelefone(pacienteAtualizado.telefone());
+        }
+
+        if (pacienteAtualizado.email() != null && !pacienteAtualizado.email().isEmpty()) {
+            paciente.setEmail(pacienteAtualizado.email());
+        }
+
+        if (pacienteAtualizado.naturalidade() != null && !pacienteAtualizado.naturalidade().isEmpty()) {
+            paciente.setNaturalidade(pacienteAtualizado.naturalidade());
+        }
+
+        if (pacienteAtualizado.contatoDeEmergencia() != null && !pacienteAtualizado.contatoDeEmergencia().isEmpty()) {
+            paciente.setContatoDeEmergencia(pacienteAtualizado.contatoDeEmergencia());
+        }
+
+        if (pacienteAtualizado.endereco().getCep() != null && !pacienteAtualizado.endereco().getCep().isEmpty()) {
+            paciente.getEndereco().setCep(pacienteAtualizado.endereco().getCep());
+        }
+
+        if (pacienteAtualizado.endereco().getCidade() != null && !pacienteAtualizado.endereco().getCidade().isEmpty()) {
+            paciente.getEndereco().setCidade(pacienteAtualizado.endereco().getCidade());
+        }
+
+        if (pacienteAtualizado.endereco().getEstado() != null && !pacienteAtualizado.endereco().getEstado().isEmpty()) {
+            paciente.getEndereco().setEstado(pacienteAtualizado.endereco().getEstado());
+        }
+
+        if (pacienteAtualizado.endereco().getLogradouro() != null && !pacienteAtualizado.endereco().getLogradouro().isEmpty()) {
+            paciente.getEndereco().setLogradouro(pacienteAtualizado.endereco().getLogradouro());
+        }
+
+        if (pacienteAtualizado.endereco().getNumero() != null) {
+            paciente.getEndereco().setNumero(pacienteAtualizado.endereco().getNumero());
+        }
+
+        if (pacienteAtualizado.endereco().getBairro() != null && !pacienteAtualizado.endereco().getBairro().isEmpty()) {
+            paciente.getEndereco().setBairro(pacienteAtualizado.endereco().getBairro());
+        }
+
+        repository.save(paciente);
     }
 
 }
