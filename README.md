@@ -1,5 +1,5 @@
 # API REST - LABMedical
-- API REST de uma aplicação Front-End de gestão de inventário médico.
+- API REST de uma aplicação Front-End para gestão de inventário médico.
 
 ## Tecnologias utilizadas
 - Java 17
