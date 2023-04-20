@@ -1,10 +1,10 @@
 package br.senai.LABMedical.controllers;
 
+import br.senai.LABMedical.dtos.EnderecoDTO;
 import br.senai.LABMedical.dtos.ListagemEnderecos;
 import br.senai.LABMedical.services.EnderecoService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +15,11 @@ public class EnderecoController {
 
     public EnderecoController(EnderecoService service) {
         this.service = service;
+    }
+
+    @PostMapping
+    public void cadastra(@RequestBody @Validated EnderecoDTO enderecoDTO) {
+        service.cadastra(enderecoDTO);
     }
 
     @GetMapping

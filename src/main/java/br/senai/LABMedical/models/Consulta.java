@@ -19,6 +19,10 @@ public class Consulta {
     private String descricao;
     private String medicacao;
     private String dosagem;
+    @OneToOne
+    private Usuario usuario;
+    @OneToOne
+    private Paciente paciente;
 
     public Consulta(ConsultaDTO consultaDTO) {
         this.motivo = consultaDTO.getMotivo();
@@ -26,6 +30,8 @@ public class Consulta {
         this.descricao = consultaDTO.getDescricao();
         this.medicacao = consultaDTO.getMedicacao();
         this.dosagem = consultaDTO.getDosagem();
+        this.usuario = new Usuario(consultaDTO.getUsuario_id());
+        this.paciente = new Paciente(consultaDTO.getPaciente_id());
     }
 
 }

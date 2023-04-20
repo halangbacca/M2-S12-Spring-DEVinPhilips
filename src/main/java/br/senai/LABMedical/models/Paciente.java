@@ -20,7 +20,7 @@ public class Paciente extends Pessoa {
     private String numeroConvenio;
     @Column(name = "validade_convenio")
     private String validadeConvenio;
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     private Endereco endereco;
 
     public Paciente(PacienteDTO pacienteDTO) {
@@ -39,7 +39,11 @@ public class Paciente extends Pessoa {
         this.convenio = pacienteDTO.getConvenio();
         this.numeroConvenio = pacienteDTO.getNumeroConvenio();
         this.validadeConvenio = pacienteDTO.getValidadeConvenio();
-        this.endereco = new Endereco(pacienteDTO);
+        this.endereco = new Endereco(pacienteDTO.getEndereco_id());
+    }
+
+    public Paciente(Long pacienteId) {
+        super.setId(pacienteId);
     }
 
 }

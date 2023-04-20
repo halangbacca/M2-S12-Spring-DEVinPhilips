@@ -1,6 +1,6 @@
 package br.senai.LABMedical.models;
 
-import br.senai.LABMedical.dtos.PacienteDTO;
+import br.senai.LABMedical.dtos.EnderecoDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,15 +31,18 @@ public class Endereco {
     @Column(name = "ponto_referencia")
     private String pontoReferencia;
 
-    public Endereco(PacienteDTO pacienteDTO) {
-        this.cep = pacienteDTO.getEndereco().cep;
-        this.cidade = pacienteDTO.getEndereco().cidade;
-        this.estado = pacienteDTO.getEndereco().estado;
-        this.logradouro = pacienteDTO.getEndereco().logradouro;
-        this.numero = pacienteDTO.getEndereco().numero;
-        this.complemento = pacienteDTO.getEndereco().complemento;
-        this.bairro = pacienteDTO.getEndereco().bairro;
-        this.pontoReferencia = pacienteDTO.getEndereco().pontoReferencia;
+    public Endereco(EnderecoDTO enderecoDTO) {
+        this.cep = enderecoDTO.getCep();
+        this.cidade = enderecoDTO.getCidade();
+        this.estado = enderecoDTO.getEstado();
+        this.logradouro = enderecoDTO.getLogradouro();
+        this.numero = enderecoDTO.getNumero();
+        this.complemento = enderecoDTO.getComplemento();
+        this.bairro = enderecoDTO.getBairro();
+        this.pontoReferencia = enderecoDTO.getPontoReferencia();
     }
 
+    public Endereco(Long enderecoId) {
+        this.setId(enderecoId);
+    }
 }

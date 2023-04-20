@@ -31,4 +31,7 @@ public class Usuario extends Pessoa {
         this.senha = usuarioDTO.getSenha();
     }
 
+    public Usuario(Long usuarioId) {
+        super.setId(usuarioId);
+    }
 }

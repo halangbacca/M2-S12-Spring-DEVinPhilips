@@ -1,6 +1,7 @@
 package br.senai.LABMedical.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -15,4 +16,8 @@ public class ConsultaDTO {
     private String medicacao;
     @NotBlank(message = "O preenchimento da dosagem e precauções da medicação receitada são obrigatórias!")
     private String dosagem;
+    @NotNull(message = "O preenchimento do ID do paciente é obrigatório!")
+    private Long paciente_id;
+    @NotNull(message = "O preenchimento do ID do médico é obrigatório!")
+    private Long usuario_id;
 }

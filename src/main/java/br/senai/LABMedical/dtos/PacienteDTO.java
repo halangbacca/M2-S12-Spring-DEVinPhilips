@@ -1,10 +1,10 @@
 package br.senai.LABMedical.dtos;
 
-import br.senai.LABMedical.models.Endereco;
 import br.senai.LABMedical.models.EstadoCivil;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
@@ -34,5 +34,6 @@ public class PacienteDTO {
     private String convenio;
     private String numeroConvenio;
     private String validadeConvenio;
-    private Endereco endereco;
+    @NotNull(message = "O preenchimento do ID do endereço é obrigatório!")
+    private Long endereco_id;
 }
