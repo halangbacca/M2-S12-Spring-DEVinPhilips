@@ -3,6 +3,7 @@ package br.senai.LABMedical.controllers;
 import br.senai.LABMedical.dtos.AtualizaPacientes;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
+import br.senai.LABMedical.models.Paciente;
 import br.senai.LABMedical.services.PacienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -41,8 +42,8 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public void atualiza(@RequestBody @Validated AtualizaPacientes pacienteAtualizado, @PathVariable Long id) {
-        service.atualiza(pacienteAtualizado, id);
+    public ResponseEntity<Paciente> atualiza(@RequestBody @Validated AtualizaPacientes pacienteAtualizado, @PathVariable Long id) {
+        return ResponseEntity.ok(service.atualiza(pacienteAtualizado, id));
     }
 
 }

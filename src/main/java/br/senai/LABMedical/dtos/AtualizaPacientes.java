@@ -1,10 +1,10 @@
 package br.senai.LABMedical.dtos;
 
-import br.senai.LABMedical.models.Endereco;
 import br.senai.LABMedical.models.EstadoCivil;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record AtualizaPacientes(
         @NotBlank(message = "O preenchimento do nome é obrigatório!")
@@ -28,6 +28,7 @@ public record AtualizaPacientes(
         String convenio,
         String numeroConvenio,
         String validadeConvenio,
-        Endereco endereco
+        @NotNull(message = "O preenchimento do ID do endereço é obrigatório!")
+        Long endereco_id
 ) {
 }
