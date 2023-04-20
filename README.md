@@ -35,7 +35,7 @@
 - Listagens
   - Listagem de pacientes por nome (query opcional)
   - Listagem de todos os pacientes
-  - Listagem de endereços
+  - Listagem de todos os endereços
   - Listagem de paciente por ID
   - Listagem de consulta por ID
   - Listagem de exame por ID
@@ -70,6 +70,9 @@
   - Tratador de erros:
     - Erro 400 (SQLIntegrityConstraintViolationException e MethodArgumentNotValidException)
     - Erro 404 (EntityNotFoundException)
+    
+- Data Transfer Object (DTOs)
+  - Substituição de classes DTO pelos records, introduzidos de maneira experimental na versão 14 do Java e liberadas de forma oficial na versão 16
 
 ## Melhorias a serem implementadas
 - Validação de número de telefone
