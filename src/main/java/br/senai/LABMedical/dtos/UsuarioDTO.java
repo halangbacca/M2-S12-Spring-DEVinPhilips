@@ -4,33 +4,35 @@ import br.senai.LABMedical.models.Especialidade;
 import br.senai.LABMedical.models.EstadoCivil;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class UsuarioDTO {
-    @NotBlank
+    @NotBlank(message = "O preenchimento do nome é obrigatório!")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do gênero é obrigatório!")
     private String genero;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da data de nascimento é obrigatória!")
     private String dataNascimento;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do CPF é obrigatório!")
     private String cpf;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do RG é obrigatório!")
     private String rg;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do telefone é obrigatório!")
     private String telefone;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do e-mail é obrigatório!")
     private String email;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
     private String naturalidade;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do CRM/UF é obrigatório!")
     private String crm;
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da senha é obrigatória!")
+    @Min(value = 8, message = "A senha deve possuir pelo menos 8 caracteres alfanuméricos!")
     private String senha;
 }

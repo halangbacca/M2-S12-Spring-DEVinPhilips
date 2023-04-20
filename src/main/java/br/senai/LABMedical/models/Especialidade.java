@@ -1,7 +1,7 @@
 package br.senai.LABMedical.models;
 
 public enum Especialidade {
-    CLÍNICA_GERAL,
+    CLINICOGERAL,
     ANESTESIOLOGIA,
     DERMATOLOGIA,
     GINECOLOGIA,
@@ -9,5 +9,4 @@ public enum Especialidade {
     PEDIATRIA,
     PSIQUIATRIA,
     ORTOPEDIA,
-    CARDIOLOGIA
 }

@@ -9,27 +9,27 @@ import lombok.Data;
 
 @Data
 public class PacienteDTO {
-    @NotBlank
+    @NotBlank(message = "O preenchimento do nome é obrigatório!")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do gênero é obrigatório!")
     private String genero;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da data de nascimento é obrigatória!")
     private String dataNascimento;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do CPF é obrigatório!")
     private String cpf;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do RG é obrigatório!")
     private String rg;
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do telefone é obrigatório!")
     private String telefone;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do e-mail é obrigatório!")
     private String email;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
     private String naturalidade;
     private String alergias;
     private String cuidadosEspecificos;
-    @NotBlank
+    @NotBlank(message = "O preenchimento de um contato de emergência é obrigatório!")
     private String contatoDeEmergencia;
     private String convenio;
     private String numeroConvenio;

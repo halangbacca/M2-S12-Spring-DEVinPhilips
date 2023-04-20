@@ -5,15 +5,15 @@ import lombok.Data;
 
 @Data
 public class ExameDTO {
-    @NotBlank
+    @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da data e hora do exame são obrigatórias!")
     private String dataHora;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")
     private String tipo;
-    @NotBlank
+    @NotBlank(message = "O preenchimento do laboratório que irá executar o exame é obrigatório!")
     private String laboratorio;
     private String pdf;
-    @NotBlank
+    @NotBlank(message = "O preenchimento dos resultados do exame é obrigatório!")
     private String resultados;
 }

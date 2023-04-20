@@ -5,14 +5,14 @@ import lombok.Data;
 
 @Data
 public class ConsultaDTO {
-    @NotBlank
+    @NotBlank(message = "O preenchimento do motivo da consulta é obrigatória!")
     private String motivo;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da data e hora da consulta são obrigatórias!")
     private String dataHora;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da descrição da consulta é obrigatória!")
     private String descricao;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da medicação receitada é obrigatória!")
     private String medicacao;
-    @NotBlank
+    @NotBlank(message = "O preenchimento da dosagem e precauções da medicação receitada são obrigatórias!")
     private String dosagem;
 }
