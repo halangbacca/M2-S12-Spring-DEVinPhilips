@@ -4,8 +4,10 @@ import br.senai.LABMedical.models.Especialidade;
 import br.senai.LABMedical.models.EstadoCivil;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 @Data
@@ -25,10 +27,12 @@ public class UsuarioDTO {
     @NotBlank(message = "O preenchimento do telefone é obrigatório!")
     private String telefone;
     @NotBlank(message = "O preenchimento do e-mail é obrigatório!")
+    @Email(message = "O formato do email é inválido!")
     private String email;
     @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
     private String naturalidade;
     @NotBlank(message = "O preenchimento do CRM/UF é obrigatório!")
+    @Pattern(regexp = "\\d{4,6}", message = "O formato do CRM/UF é inválido!")
     private String crm;
     @Enumerated(EnumType.STRING)
     private Especialidade especialidade;

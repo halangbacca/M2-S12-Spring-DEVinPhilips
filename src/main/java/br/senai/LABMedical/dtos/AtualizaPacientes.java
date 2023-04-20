@@ -3,6 +3,7 @@ package br.senai.LABMedical.dtos;
 import br.senai.LABMedical.models.EstadoCivil;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,6 +19,7 @@ public record AtualizaPacientes(
         @NotBlank(message = "O preenchimento do telefone é obrigatório!")
         String telefone,
         @NotBlank(message = "O preenchimento do e-mail é obrigatório!")
+        @Email(message = "O formato do email é inválido!")
         String email,
         @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
         String naturalidade,
