@@ -5,6 +5,8 @@ import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.models.Paciente;
 import br.senai.LABMedical.repositories.PacienteRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +25,10 @@ public class PacienteService {
         repository.save(paciente);
     }
 
-    public List<ListagemPacientes> busca() {
+    public List<ListagemPacientes> busca(String nome) {
+        if (nome != null && !nome.isEmpty()) {
+            return repository.findByNomeContainingIgnoreCase(nome);
+        }
         return repository.findAll().stream().map(ListagemPacientes::new).toList();
     }
 
@@ -33,11 +38,12 @@ public class PacienteService {
     }
 
     public void deleta(Long id) {
+        Paciente paciente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.deleteById(id);
     }
 
     public void atualiza(AtualizaPacientes pacienteAtualizado, Long id) {
-        Paciente paciente = repository.findById(id).orElseThrow(RuntimeException::new);
+        Paciente paciente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (pacienteAtualizado.nome() != null && !pacienteAtualizado.nome().isEmpty()) {
             paciente.setNome(pacienteAtualizado.nome());

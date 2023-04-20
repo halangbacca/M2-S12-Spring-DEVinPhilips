@@ -5,6 +5,7 @@ import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
 import br.senai.LABMedical.repositories.ConsultaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,9 +17,9 @@ public class ConsultaService {
         this.repository = repository;
     }
 
-    public void cadastra(ConsultaDTO consultaDTO) {
+    public Consulta cadastra(ConsultaDTO consultaDTO) {
         Consulta consulta = new Consulta(consultaDTO);
-        repository.save(consulta);
+        return repository.save(consulta);
     }
 
     public ListagemConsultas busca(Long id) {
@@ -27,11 +28,12 @@ public class ConsultaService {
     }
 
     public void deleta(Long id) {
+        repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.deleteById(id);
     }
 
-    public void atualiza(AtualizaConsultas consultaAtualizada, Long id) {
-        Consulta consulta = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Consulta atualiza(AtualizaConsultas consultaAtualizada, Long id) {
+        Consulta consulta = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {
             consulta.setMotivo(consultaAtualizada.motivo());
@@ -49,7 +51,7 @@ public class ConsultaService {
             consulta.setDosagem(consultaAtualizada.dosagem());
         }
 
-        repository.save(consulta);
+        return repository.save(consulta);
     }
 
 }

@@ -1,10 +1,10 @@
 package br.senai.LABMedical.controllers;
 
-import br.senai.LABMedical.dtos.AtualizaExames;
 import br.senai.LABMedical.dtos.AtualizaPacientes;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.services.PacienteService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +25,8 @@ public class PacienteController {
     }
 
     @GetMapping
-    public List<ListagemPacientes> busca() {
-        return service.busca();
+    public List<ListagemPacientes> busca(@RequestParam(required = false) String nome) {
+        return service.busca(nome);
     }
 
     @GetMapping("/{id}")
@@ -35,8 +35,9 @@ public class PacienteController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleta(@PathVariable Long id) {
+    public ResponseEntity<Void> deleta(@PathVariable Long id) {
         service.deleta(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")

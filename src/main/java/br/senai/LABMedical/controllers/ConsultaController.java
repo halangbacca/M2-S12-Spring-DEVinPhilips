@@ -3,9 +3,14 @@ package br.senai.LABMedical.controllers;
 import br.senai.LABMedical.dtos.AtualizaConsultas;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
+import br.senai.LABMedical.models.Consulta;
 import br.senai.LABMedical.services.ConsultaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/api/consultas")
@@ -17,8 +22,11 @@ public class ConsultaController {
     }
 
     @PostMapping
-    public void cadastra(@RequestBody @Validated ConsultaDTO consultaDTO) {
-        service.cadastra(consultaDTO);
+    public ResponseEntity<Consulta> cadastra(@RequestBody @Validated ConsultaDTO consultaDTO, UriComponentsBuilder builder) {
+        Consulta consulta = service.cadastra(consultaDTO);
+
+        URI uri = builder.path("/api/consultas/{id}").buildAndExpand(consulta.getId()).toUri();
+        return ResponseEntity.created(uri).body(consulta);
     }
 
     @GetMapping("/{id}")
@@ -27,13 +35,14 @@ public class ConsultaController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleta(@PathVariable Long id) {
+    public ResponseEntity<Void> deleta(@PathVariable Long id) {
         service.deleta(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{id}")
-    public void atualiza(@RequestBody @Validated AtualizaConsultas consultaAtualizada, @PathVariable Long id) {
-        service.atualiza(consultaAtualizada, id);
+    public ResponseEntity<Consulta> atualiza(@RequestBody @Validated AtualizaConsultas consultaAtualizada, @PathVariable Long id) {
+        return ResponseEntity.ok(service.atualiza(consultaAtualizada, id));
     }
 
 }
