@@ -13,6 +13,7 @@
 ## Como executar
 - Clonar o repositório para a sua máquina
 - Baixar e instalar o MySQL
+- Definir um usuário e senha no MySQL
 - Baixar e instalar um sistema de gerenciamento de banco de dados (SGBDs) como o DBeaver ou Oracle SQL Developer
 - Baixar e instalar o Java Development Kit (JDK) >= 17
 - Baixar e instalar o IntelliJ IDEA ou outra IDE de sua preferência
@@ -21,7 +22,7 @@
 - Configurar o arquivo application.properties definindo o usuário e senha do seu banco de dados MySQL
 - Executar o código através da IDE
 - O Flyway criará um novo banco de dados e carregará os dados inicias
-- EXecutar os comandos no Postman ou Insomnia REST
+- Executar os comandos no Postman ou Insomnia REST
 
 ## Funcionalidades
 - Cadastros
