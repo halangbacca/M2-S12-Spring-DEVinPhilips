@@ -14,6 +14,6 @@ public class ExameDTO {
     @NotBlank(message = "O preenchimento do laboratório que irá executar o exame é obrigatório!")
     private String laboratorio;
     private String pdf;
-    @NotBlank(message = "O preenchimento dos resultados do exame é obrigatório!")
+    @NotBlank(message = "O preenchimento dos resultados do exame são obrigatórios!")
     private String resultados;
 }

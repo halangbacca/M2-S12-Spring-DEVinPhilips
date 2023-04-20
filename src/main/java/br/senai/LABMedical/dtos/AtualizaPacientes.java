@@ -7,23 +7,23 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 
 public record AtualizaPacientes(
-        @NotBlank
+        @NotBlank(message = "O preenchimento do nome é obrigatório!")
         String nome,
-        @NotBlank
+        @NotBlank(message = "O preenchimento do gênero é obrigatório!")
         String genero,
-        @NotBlank
+        @NotBlank(message = "O preenchimento da data de nascimento é obrigatória!")
         String dataNascimento,
         @Enumerated(EnumType.STRING)
         EstadoCivil estadoCivil,
-        @NotBlank
+        @NotBlank(message = "O preenchimento do telefone é obrigatório!")
         String telefone,
-        @NotBlank
+        @NotBlank(message = "O preenchimento do e-mail é obrigatório!")
         String email,
-        @NotBlank
+        @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
         String naturalidade,
         String alergias,
         String cuidadosEspecificos,
-        @NotBlank
+        @NotBlank(message = "O preenchimento de um contato de emergência é obrigatório!")
         String contatoDeEmergencia,
         String convenio,
         String numeroConvenio,
