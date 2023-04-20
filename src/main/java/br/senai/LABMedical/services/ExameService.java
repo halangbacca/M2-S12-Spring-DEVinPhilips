@@ -5,6 +5,7 @@ import br.senai.LABMedical.dtos.ExameDTO;
 import br.senai.LABMedical.dtos.ListagemExames;
 import br.senai.LABMedical.models.Exame;
 import br.senai.LABMedical.repositories.ExameRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,9 +16,9 @@ public class ExameService {
         this.repository = repository;
     }
 
-    public void cadastra(ExameDTO exameDTO) {
+    public Exame cadastra(ExameDTO exameDTO) {
         Exame exame = new Exame(exameDTO);
-        repository.save(exame);
+        return repository.save(exame);
     }
 
     public ListagemExames busca(Long id) {
@@ -26,11 +27,12 @@ public class ExameService {
     }
 
     public void deleta(Long id) {
+        repository.findById(id).orElseThrow(EntityNotFoundException::new);
         repository.deleteById(id);
     }
 
-    public void atualiza(AtualizaExames exameAtualizado, Long id) {
-        Exame exame = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Exame atualiza(AtualizaExames exameAtualizado, Long id) {
+        Exame exame = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (exameAtualizado.nome() != null && !exameAtualizado.nome().isEmpty()) {
             exame.setNome(exameAtualizado.nome());
@@ -52,7 +54,7 @@ public class ExameService {
             exame.setResultados(exameAtualizado.resultados());
         }
 
-        repository.save(exame);
+        return repository.save(exame);
     }
 
 }

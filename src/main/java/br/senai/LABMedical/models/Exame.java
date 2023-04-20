@@ -20,9 +20,9 @@ public class Exame {
     private String laboratorio;
     private String pdf;
     private String resultados;
-    @OneToOne
+    @ManyToOne
     private Usuario usuario;
-    @OneToOne
+    @ManyToOne
     private Paciente paciente;
 
     public Exame(ExameDTO exameDTO) {

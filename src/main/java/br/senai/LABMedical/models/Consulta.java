@@ -19,9 +19,9 @@ public class Consulta {
     private String descricao;
     private String medicacao;
     private String dosagem;
-    @OneToOne
+    @ManyToOne
     private Usuario usuario;
-    @OneToOne
+    @ManyToOne
     private Paciente paciente;
 
     public Consulta(ConsultaDTO consultaDTO) {

@@ -16,9 +16,9 @@ public class EnderecoService {
         this.repository = repository;
     }
 
-    public void cadastra(EnderecoDTO enderecoDTO) {
+    public Endereco cadastra(EnderecoDTO enderecoDTO) {
         Endereco endereco = new Endereco(enderecoDTO);
-        repository.save(endereco);
+        return repository.save(endereco);
     }
 
     public List<ListagemEnderecos> busca() {
