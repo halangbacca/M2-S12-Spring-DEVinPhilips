@@ -38,7 +38,8 @@ public record PacienteDTO(
         String contatoDeEmergencia,
         String convenio,
         String numeroConvenio,
-        String validadeConvenio,
+        @JsonFormat(pattern = "dd/MM/yyyy")
+        LocalDate validadeConvenio,
         @NotNull(message = "O preenchimento do ID do endereço é obrigatório!")
         Long endereco_id
 ) {

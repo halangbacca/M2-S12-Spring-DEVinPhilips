@@ -2,7 +2,7 @@ CREATE TABLE usuarios
 (
     id              bigint       not null auto_increment,
     cpf             varchar(100) not null unique,
-    data_nascimento varchar(100) not null,
+    data_nascimento date not null,
     email           varchar(100) not null,
     estado_civil    varchar(100) not null,
     genero          varchar(100) not null,
@@ -23,11 +23,11 @@ CREATE TABLE enderecos
     bairro           varchar(100) not null,
     cep              varchar(100) not null,
     cidade           varchar(100) not null,
-    complemento      varchar(100) not null,
+    complemento      varchar(100),
     estado           varchar(100) not null,
     logradouro       varchar(100) not null,
     numero           integer(10)  not null,
-    ponto_referencia varchar(100) not null,
+    ponto_referencia varchar(100),
 
     primary key (id)
 );
@@ -36,7 +36,7 @@ CREATE TABLE pacientes
 (
     id                    bigint       not null auto_increment,
     cpf                   varchar(100) not null unique,
-    data_nascimento       varchar(100) not null,
+    data_nascimento       date not null,
     email                 varchar(100) not null,
     estado_civil          varchar(100) not null,
     genero                varchar(100) not null,
@@ -44,12 +44,12 @@ CREATE TABLE pacientes
     nome                  varchar(100) not null,
     rg                    varchar(100) not null,
     telefone              varchar(100) not null,
-    alergias              varchar(100) not null,
+    alergias              varchar(100),
     contato_de_emergencia varchar(100) not null,
-    convenio              varchar(100) not null,
-    cuidados_especificos  varchar(100) not null,
-    numero_convenio       varchar(100) not null,
-    validade_convenio     varchar(100) not null,
+    convenio              varchar(100),
+    cuidados_especificos  varchar(100),
+    numero_convenio       varchar(100),
+    validade_convenio     date,
     endereco_id           bigint       not null,
 
     primary key (id),
@@ -59,7 +59,7 @@ CREATE TABLE pacientes
 CREATE TABLE consultas
 (
     id          bigint       not null auto_increment,
-    data_hora   varchar(100) not null unique,
+    data_hora   datetime not null,
     descricao   varchar(100) not null,
     dosagem     varchar(100) not null,
     medicacao   varchar(100) not null,
@@ -75,10 +75,10 @@ CREATE TABLE consultas
 CREATE TABLE exames
 (
     id          bigint       not null auto_increment,
-    data_hora   varchar(100) not null unique,
+    data_hora   datetime not null,
     laboratorio varchar(100) not null,
     nome        varchar(100) not null,
-    pdf         varchar(100) not null,
+    pdf         varchar(100),
     resultados  varchar(100) not null,
     tipo        varchar(100) not null,
     usuario_id  bigint       not null,

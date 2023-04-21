@@ -4,6 +4,8 @@ import br.senai.LABMedical.dtos.PacienteDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
@@ -19,7 +21,7 @@ public class Paciente extends Pessoa {
     @Column(name = "numero_convenio")
     private String numeroConvenio;
     @Column(name = "validade_convenio")
-    private String validadeConvenio;
+    private LocalDate validadeConvenio;
     @ManyToOne(fetch = FetchType.EAGER)
     private Endereco endereco;
 
