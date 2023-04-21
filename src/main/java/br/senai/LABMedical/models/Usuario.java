@@ -17,18 +17,18 @@ public class Usuario extends Pessoa {
     private String senha;
 
     public Usuario(UsuarioDTO usuarioDTO) {
-        super.setNome(usuarioDTO.getNome());
-        super.setGenero(usuarioDTO.getGenero());
-        super.setDataNascimento(usuarioDTO.getDataNascimento());
-        super.setCpf(usuarioDTO.getCpf());
-        super.setRg(usuarioDTO.getRg());
-        super.setEstadoCivil(usuarioDTO.getEstadoCivil());
-        super.setTelefone(usuarioDTO.getTelefone());
-        super.setEmail(usuarioDTO.getEmail());
-        super.setNaturalidade(usuarioDTO.getNaturalidade());
-        this.crm = usuarioDTO.getCrm();
-        this.especialidade = usuarioDTO.getEspecialidade();
-        this.senha = usuarioDTO.getSenha();
+        super.setNome(usuarioDTO.nome());
+        super.setGenero(usuarioDTO.genero());
+        super.setDataNascimento(usuarioDTO.dataNascimento());
+        super.setCpf(usuarioDTO.cpf());
+        super.setRg(usuarioDTO.rg());
+        super.setEstadoCivil(usuarioDTO.estadoCivil());
+        super.setTelefone(usuarioDTO.telefone());
+        super.setEmail(usuarioDTO.email());
+        super.setNaturalidade(usuarioDTO.naturalidade());
+        this.crm = usuarioDTO.crm();
+        this.especialidade = usuarioDTO.especialidade();
+        this.senha = usuarioDTO.senha();
     }
 
     public Usuario(Long usuarioId) {

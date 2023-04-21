@@ -12,7 +12,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 @RestControllerAdvice
-public class TratadorDeErros {
+public class Handler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<Void> trataErro404() {

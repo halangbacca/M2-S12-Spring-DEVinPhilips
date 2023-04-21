@@ -1,16 +1,16 @@
 package br.senai.LABMedical.dtos;
 
+import br.senai.LABMedical.models.Especialidade;
 import br.senai.LABMedical.models.EstadoCivil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 
-public record AtualizaPacientes(
+public record AtualizaUsuario(
         @NotBlank(message = "O preenchimento do nome é obrigatório!")
         String nome,
         @NotBlank(message = "O preenchimento do gênero é obrigatório!")
@@ -26,14 +26,9 @@ public record AtualizaPacientes(
         String email,
         @NotBlank(message = "O preenchimento da naturalidade é obrigatória!")
         String naturalidade,
-        String alergias,
-        String cuidadosEspecificos,
-        @NotBlank(message = "O preenchimento de um contato de emergência é obrigatório!")
-        String contatoDeEmergencia,
-        String convenio,
-        String numeroConvenio,
-        String validadeConvenio,
-        @NotNull(message = "O preenchimento do ID do endereço é obrigatório!")
-        Long endereco_id
+        @NotBlank(message = "O preenchimento do CRM/UF é obrigatório!")
+        String crm,
+        @Enumerated(EnumType.STRING)
+        Especialidade especialidade
 ) {
 }

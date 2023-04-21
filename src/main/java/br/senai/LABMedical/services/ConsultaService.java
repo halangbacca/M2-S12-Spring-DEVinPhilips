@@ -1,6 +1,6 @@
 package br.senai.LABMedical.services;
 
-import br.senai.LABMedical.dtos.AtualizaConsultas;
+import br.senai.LABMedical.dtos.AtualizaConsulta;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
@@ -32,7 +32,7 @@ public class ConsultaService {
         repository.deleteById(id);
     }
 
-    public Consulta atualiza(AtualizaConsultas consultaAtualizada, Long id) {
+    public Consulta atualiza(AtualizaConsulta consultaAtualizada, Long id) {
         Consulta consulta = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {

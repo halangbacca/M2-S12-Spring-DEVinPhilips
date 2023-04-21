@@ -2,7 +2,7 @@ package br.senai.LABMedical.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record AtualizaExames(
+public record AtualizaExame(
         @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
         String nome,
         @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")

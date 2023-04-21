@@ -1,6 +1,6 @@
 package br.senai.LABMedical.services;
 
-import br.senai.LABMedical.dtos.AtualizaPacientes;
+import br.senai.LABMedical.dtos.AtualizaPaciente;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.models.Endereco;
@@ -20,9 +20,9 @@ public class PacienteService {
         this.repository = repository;
     }
 
-    public void cadastra(PacienteDTO pacienteDTO) {
+    public Paciente cadastra(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente(pacienteDTO);
-        repository.save(paciente);
+        return repository.save(paciente);
     }
 
     public List<ListagemPacientes> busca(String nome) {
@@ -42,7 +42,7 @@ public class PacienteService {
         repository.deleteById(id);
     }
 
-    public Paciente atualiza(AtualizaPacientes pacienteAtualizado, Long id) {
+    public Paciente atualiza(AtualizaPaciente pacienteAtualizado, Long id) {
         Paciente paciente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (pacienteAtualizado.nome() != null && !pacienteAtualizado.nome().isEmpty()) {

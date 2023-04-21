@@ -1,10 +1,11 @@
 package br.senai.LABMedical.services;
 
 import br.senai.LABMedical.dtos.AtualizaSenhaUsuario;
-import br.senai.LABMedical.dtos.AtualizaUsuarios;
+import br.senai.LABMedical.dtos.AtualizaUsuario;
 import br.senai.LABMedical.dtos.UsuarioDTO;
 import br.senai.LABMedical.models.Usuario;
 import br.senai.LABMedical.repositories.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +16,13 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public void cadastra(UsuarioDTO usuarioDTO) {
+    public Usuario cadastra(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario(usuarioDTO);
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
-    public void atualiza(AtualizaUsuarios usuarioAtualizado, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Usuario atualiza(AtualizaUsuario usuarioAtualizado, Long id) {
+        Usuario usuario = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (usuarioAtualizado.nome() != null && !usuarioAtualizado.nome().isEmpty()) {
             usuario.setNome(usuarioAtualizado.nome());
@@ -59,17 +60,17 @@ public class UsuarioService {
             usuario.setEspecialidade(usuarioAtualizado.especialidade());
         }
 
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
-    public void atualiza(AtualizaSenhaUsuario senhaAtualizada, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Usuario atualiza(AtualizaSenhaUsuario senhaAtualizada, Long id) {
+        Usuario usuario = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (senhaAtualizada.senha() != null && !senhaAtualizada.senha().isEmpty()) {
             usuario.setSenha(senhaAtualizada.senha());
         }
 
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
 }

@@ -2,7 +2,7 @@ package br.senai.LABMedical.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 
-public record AtualizaConsultas(
+public record AtualizaConsulta(
         @NotBlank(message = "O preenchimento do motivo da consulta é obrigatória!")
         String motivo,
         @NotBlank(message = "O preenchimento da descrição da consulta é obrigatória!")

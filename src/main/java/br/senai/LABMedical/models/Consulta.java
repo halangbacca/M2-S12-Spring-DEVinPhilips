@@ -27,13 +27,13 @@ public class Consulta {
     private Paciente paciente;
 
     public Consulta(ConsultaDTO consultaDTO) {
-        this.motivo = consultaDTO.getMotivo();
-        this.dataHora = consultaDTO.getDataHora();
-        this.descricao = consultaDTO.getDescricao();
-        this.medicacao = consultaDTO.getMedicacao();
-        this.dosagem = consultaDTO.getDosagem();
-        this.usuario = new Usuario(consultaDTO.getUsuario_id());
-        this.paciente = new Paciente(consultaDTO.getPaciente_id());
+        this.motivo = consultaDTO.motivo();
+        this.dataHora = consultaDTO.dataHora();
+        this.descricao = consultaDTO.descricao();
+        this.medicacao = consultaDTO.medicacao();
+        this.dosagem = consultaDTO.dosagem();
+        this.usuario = new Usuario(consultaDTO.usuario_id());
+        this.paciente = new Paciente(consultaDTO.paciente_id());
     }
 
 }

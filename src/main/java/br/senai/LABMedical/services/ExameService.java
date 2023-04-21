@@ -1,6 +1,6 @@
 package br.senai.LABMedical.services;
 
-import br.senai.LABMedical.dtos.AtualizaExames;
+import br.senai.LABMedical.dtos.AtualizaExame;
 import br.senai.LABMedical.dtos.ExameDTO;
 import br.senai.LABMedical.dtos.ListagemExames;
 import br.senai.LABMedical.models.Exame;
@@ -31,7 +31,7 @@ public class ExameService {
         repository.deleteById(id);
     }
 
-    public Exame atualiza(AtualizaExames exameAtualizado, Long id) {
+    public Exame atualiza(AtualizaExame exameAtualizado, Long id) {
         Exame exame = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
         if (exameAtualizado.nome() != null && !exameAtualizado.nome().isEmpty()) {

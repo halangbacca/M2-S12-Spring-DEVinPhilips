@@ -24,22 +24,22 @@ public class Paciente extends Pessoa {
     private Endereco endereco;
 
     public Paciente(PacienteDTO pacienteDTO) {
-        super.setNome(pacienteDTO.getNome());
-        super.setGenero(pacienteDTO.getGenero());
-        super.setDataNascimento(pacienteDTO.getDataNascimento());
-        super.setCpf(pacienteDTO.getCpf());
-        super.setRg(pacienteDTO.getRg());
-        super.setEstadoCivil(pacienteDTO.getEstadoCivil());
-        super.setTelefone(pacienteDTO.getTelefone());
-        super.setEmail(pacienteDTO.getEmail());
-        super.setNaturalidade(pacienteDTO.getNaturalidade());
-        this.alergias = pacienteDTO.getAlergias();
-        this.cuidadosEspecificos = pacienteDTO.getCuidadosEspecificos();
-        this.contatoDeEmergencia = pacienteDTO.getContatoDeEmergencia();
-        this.convenio = pacienteDTO.getConvenio();
-        this.numeroConvenio = pacienteDTO.getNumeroConvenio();
-        this.validadeConvenio = pacienteDTO.getValidadeConvenio();
-        this.endereco = new Endereco(pacienteDTO.getEndereco_id());
+        super.setNome(pacienteDTO.nome());
+        super.setGenero(pacienteDTO.genero());
+        super.setDataNascimento(pacienteDTO.dataNascimento());
+        super.setCpf(pacienteDTO.cpf());
+        super.setRg(pacienteDTO.rg());
+        super.setEstadoCivil(pacienteDTO.estadoCivil());
+        super.setTelefone(pacienteDTO.telefone());
+        super.setEmail(pacienteDTO.email());
+        super.setNaturalidade(pacienteDTO.naturalidade());
+        this.alergias = pacienteDTO.alergias();
+        this.cuidadosEspecificos = pacienteDTO.cuidadosEspecificos();
+        this.contatoDeEmergencia = pacienteDTO.contatoDeEmergencia();
+        this.convenio = pacienteDTO.convenio();
+        this.numeroConvenio = pacienteDTO.numeroConvenio();
+        this.validadeConvenio = pacienteDTO.validadeConvenio();
+        this.endereco = new Endereco(pacienteDTO.endereco_id());
     }
 
     public Paciente(Long pacienteId) {

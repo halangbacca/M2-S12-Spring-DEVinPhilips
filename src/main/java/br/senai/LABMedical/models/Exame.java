@@ -28,14 +28,14 @@ public class Exame {
     private Paciente paciente;
 
     public Exame(ExameDTO exameDTO) {
-        this.nome = exameDTO.getNome();
-        this.dataHora = exameDTO.getDataHora();
-        this.tipo = exameDTO.getTipo();
-        this.laboratorio = exameDTO.getLaboratorio();
-        this.pdf = exameDTO.getPdf();
-        this.resultados = exameDTO.getResultados();
-        this.usuario = new Usuario(exameDTO.getUsuario_id());
-        this.paciente = new Paciente(exameDTO.getPaciente_id());
+        this.nome = exameDTO.nome();
+        this.dataHora = exameDTO.dataHora();
+        this.tipo = exameDTO.tipo();
+        this.laboratorio = exameDTO.laboratorio();
+        this.pdf = exameDTO.pdf();
+        this.resultados = exameDTO.resultados();
+        this.usuario = new Usuario(exameDTO.usuario_id());
+        this.paciente = new Paciente(exameDTO.paciente_id());
     }
 
 }

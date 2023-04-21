@@ -1,6 +1,6 @@
 package br.senai.LABMedical.controllers;
 
-import br.senai.LABMedical.dtos.AtualizaExames;
+import br.senai.LABMedical.dtos.AtualizaExame;
 import br.senai.LABMedical.dtos.ExameDTO;
 import br.senai.LABMedical.dtos.ListagemExames;
 import br.senai.LABMedical.models.Exame;
@@ -41,7 +41,7 @@ public class ExameController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Exame> atualiza(@RequestBody @Validated AtualizaExames exameAtualizado, @PathVariable Long id) {
+    public ResponseEntity<Exame> atualiza(@RequestBody @Validated AtualizaExame exameAtualizado, @PathVariable Long id) {
         return ResponseEntity.ok(service.atualiza(exameAtualizado, id));
     }
 
