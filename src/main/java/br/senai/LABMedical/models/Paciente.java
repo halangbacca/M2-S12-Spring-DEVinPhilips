@@ -20,7 +20,7 @@ public class Paciente extends Pessoa {
     private String numeroConvenio;
     @Column(name = "validade_convenio")
     private String validadeConvenio;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Endereco endereco;
 
     public Paciente(PacienteDTO pacienteDTO) {

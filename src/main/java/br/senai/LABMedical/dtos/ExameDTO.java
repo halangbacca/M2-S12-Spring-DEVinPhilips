@@ -1,15 +1,18 @@
 package br.senai.LABMedical.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 public class ExameDTO {
     @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
     private String nome;
-    @NotBlank(message = "O preenchimento da data e hora do exame são obrigatórias!")
-    private String dataHora;
+    @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
+    private LocalDateTime dataHora;
     @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")
     private String tipo;
     @NotBlank(message = "O preenchimento do laboratório que irá executar o exame é obrigatório!")

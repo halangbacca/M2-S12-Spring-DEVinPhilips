@@ -53,7 +53,7 @@ public class PacienteService {
             paciente.setGenero(pacienteAtualizado.genero());
         }
 
-        if (pacienteAtualizado.dataNascimento() != null && !pacienteAtualizado.dataNascimento().isEmpty()) {
+        if (pacienteAtualizado.dataNascimento() != null) {
             paciente.setDataNascimento(pacienteAtualizado.dataNascimento());
         }
 

@@ -4,6 +4,8 @@ import br.senai.LABMedical.dtos.ExameDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,14 +17,14 @@ public class Exame {
     private Long id;
     private String nome;
     @Column(name = "data_hora")
-    private String dataHora;
+    private LocalDateTime dataHora;
     private String tipo;
     private String laboratorio;
     private String pdf;
     private String resultados;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paciente paciente;
 
     public Exame(ExameDTO exameDTO) {

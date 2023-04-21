@@ -31,7 +31,7 @@ public class UsuarioService {
             usuario.setGenero(usuarioAtualizado.genero());
         }
 
-        if (usuarioAtualizado.dataNascimento() != null && !usuarioAtualizado.dataNascimento().isEmpty()) {
+        if (usuarioAtualizado.dataNascimento() != null) {
             usuario.setDataNascimento(usuarioAtualizado.dataNascimento());
         }
 

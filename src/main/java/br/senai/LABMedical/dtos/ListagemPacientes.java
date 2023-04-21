@@ -4,7 +4,9 @@ import br.senai.LABMedical.models.Endereco;
 import br.senai.LABMedical.models.EstadoCivil;
 import br.senai.LABMedical.models.Paciente;
 
-public record ListagemPacientes(Long id, String nome, String genero, String dataNascimento, String cpf, String rg,
+import java.time.LocalDate;
+
+public record ListagemPacientes(Long id, String nome, String genero, LocalDate dataNascimento, String cpf, String rg,
                                 EstadoCivil estadoCivil, String telefone, String email, String naturalidade,
                                 String alergias, String cuidadosEspecificos, String contatoDeEmergencia,
                                 String convenio, String numeroConvenio, String validadeConvenio, Endereco endereco) {

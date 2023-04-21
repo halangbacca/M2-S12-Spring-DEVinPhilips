@@ -76,8 +76,6 @@
 
 ## Melhorias a serem implementadas
 - Validação de número de telefone
-- Validação de CPF
-- Validação de e-mail
 - Validação de gênero
 - Validação de CEP
 - Validação de RG
