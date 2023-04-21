@@ -5,8 +5,10 @@ import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.models.Endereco;
 import br.senai.LABMedical.models.Paciente;
+import br.senai.LABMedical.repositories.EnderecoRepository;
 import br.senai.LABMedical.repositories.PacienteRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,12 @@ public class PacienteService {
         this.repository = repository;
     }
 
+    @Autowired
+    public EnderecoRepository enderecoRepository;
+
     public Paciente cadastra(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente(pacienteDTO);
+        paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(EntityNotFoundException::new));
         return repository.save(paciente);
     }
 
