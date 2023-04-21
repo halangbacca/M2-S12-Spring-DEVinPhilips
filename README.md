@@ -14,6 +14,7 @@
 - Clonar o repositório para a sua máquina
 - Baixar e instalar o MySQL
 - Definir um usuário e senha no MySQL
+- Criar a database através do comando "CREATE DATABASE labmedicalbd" ou através de um SGBD (o Flyway manipula apenas a criação do esquema, não a criação do banco de dados)
 - Baixar e instalar um sistema de gerenciamento de banco de dados (SGBDs) como o DBeaver ou Oracle SQL Developer
 - Baixar e instalar o Java Development Kit (JDK) >= 17
 - Baixar e instalar o IntelliJ IDEA ou outra IDE de sua preferência
