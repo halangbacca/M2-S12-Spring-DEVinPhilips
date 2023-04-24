@@ -9,6 +9,7 @@ import br.senai.LABMedical.repositories.EnderecoRepository;
 import br.senai.LABMedical.repositories.PacienteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class PacienteService {
 
     public Paciente cadastra(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente(pacienteDTO);
-        paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(EntityNotFoundException::new));
+        paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Endereço não encontrado!")));
         return repository.save(paciente);
     }
 
@@ -41,12 +42,13 @@ public class PacienteService {
     }
 
     public void deleta(Long id) {
-        Paciente paciente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Paciente paciente = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Endereço não encontrado!"));
         repository.deleteById(id);
     }
 
     public Paciente atualiza(AtualizaPaciente pacienteAtualizado, Long id) {
-        Paciente paciente = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Paciente paciente = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado!"));
+        ;
 
         if (pacienteAtualizado.nome() != null && !pacienteAtualizado.nome().isEmpty()) {
             paciente.setNome(pacienteAtualizado.nome());
@@ -83,7 +85,7 @@ public class PacienteService {
         if (pacienteAtualizado.endereco_id() != null) {
             Endereco endereco = new Endereco(pacienteAtualizado.endereco_id());
             paciente.setEndereco(endereco);
-            paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(EntityNotFoundException::new));
+            paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Endereço não encontrado!")));
         }
 
         return repository.save(paciente);

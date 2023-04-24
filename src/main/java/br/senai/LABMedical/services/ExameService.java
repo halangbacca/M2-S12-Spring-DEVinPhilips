@@ -3,7 +3,6 @@ package br.senai.LABMedical.services;
 import br.senai.LABMedical.dtos.AtualizaExame;
 import br.senai.LABMedical.dtos.ExameDTO;
 import br.senai.LABMedical.dtos.ListagemExames;
-import br.senai.LABMedical.models.Endereco;
 import br.senai.LABMedical.models.Exame;
 import br.senai.LABMedical.models.Paciente;
 import br.senai.LABMedical.models.Usuario;
@@ -12,6 +11,7 @@ import br.senai.LABMedical.repositories.PacienteRepository;
 import br.senai.LABMedical.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,8 +28,8 @@ public class ExameService {
 
     public Exame cadastra(ExameDTO exameDTO) {
         Exame exame = new Exame(exameDTO);
-        exame.setPaciente(pacienteRepository.findById(exame.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
-        exame.setUsuario(usuarioRepository.findById(exame.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
+        exame.setPaciente(pacienteRepository.findById(exame.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
+        exame.setUsuario(usuarioRepository.findById(exame.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         return repository.save(exame);
     }
 
@@ -39,12 +39,12 @@ public class ExameService {
     }
 
     public void deleta(Long id) {
-        repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exame não encontrado!"));
         repository.deleteById(id);
     }
 
     public Exame atualiza(AtualizaExame exameAtualizado, Long id) {
-        Exame exame = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Exame exame = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exame não encontrado!"));
 
         if (exameAtualizado.nome() != null && !exameAtualizado.nome().isEmpty()) {
             exame.setNome(exameAtualizado.nome());
@@ -69,13 +69,13 @@ public class ExameService {
         if (exameAtualizado.paciente_id() != null) {
             Paciente paciente = new Paciente(exameAtualizado.paciente_id());
             exame.setPaciente(paciente);
-            exame.setPaciente(pacienteRepository.findById(exame.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
+            exame.setPaciente(pacienteRepository.findById(exame.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
         }
 
         if (exameAtualizado.usuario_id() != null) {
             Usuario usuario = new Usuario(exameAtualizado.usuario_id());
             exame.setUsuario(usuario);
-            exame.setUsuario(usuarioRepository.findById(exame.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
+            exame.setUsuario(usuarioRepository.findById(exame.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         }
 
         return repository.save(exame);

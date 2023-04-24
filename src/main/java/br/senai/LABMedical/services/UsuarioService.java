@@ -22,7 +22,7 @@ public class UsuarioService {
     }
 
     public Usuario atualiza(AtualizaUsuario usuarioAtualizado, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
 
         if (usuarioAtualizado.nome() != null && !usuarioAtualizado.nome().isEmpty()) {
             usuario.setNome(usuarioAtualizado.nome());
@@ -64,7 +64,7 @@ public class UsuarioService {
     }
 
     public Usuario atualiza(AtualizaSenhaUsuario senhaAtualizada, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
 
         if (senhaAtualizada.senha() != null && !senhaAtualizada.senha().isEmpty()) {
             usuario.setSenha(senhaAtualizada.senha());

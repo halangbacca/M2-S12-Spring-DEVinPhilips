@@ -16,12 +16,23 @@ import java.util.List;
 public class Handler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<Void> trataErro404NotFound() {
+    public ResponseEntity<String> trataErro404NotFound(EntityNotFoundException exception) {
+        if (exception.getMessage().contains("Endereço")) {
+            return ResponseEntity.status(404).body("O ID do endereço informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Paciente")) {
+            return ResponseEntity.status(404).body("O ID do paciente informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Usuário")) {
+            return ResponseEntity.status(404).body("O ID do usuário informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Exame")) {
+            return ResponseEntity.status(404).body("O ID do exame informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Consulta")) {
+            return ResponseEntity.status(404).body("O ID da consulta informada não foi encontrada no banco de dados!");
+        }
         return ResponseEntity.notFound().build();
     }
 
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
-    public ResponseEntity<String> trataErro400SQL(SQLIntegrityConstraintViolationException exception) {
+    public ResponseEntity<String> trataErro400ConstraintViolation(SQLIntegrityConstraintViolationException exception) {
         if (exception.getMessage().contains("Duplicate")) {
             return ResponseEntity.status(409).body("Este CPF já está cadastrado!");
         } else if (exception.getMessage().contains("exames")) {
@@ -29,7 +40,7 @@ public class Handler {
         } else if (exception.getMessage().contains("consultas")) {
             return ResponseEntity.badRequest().body("Não é possível deletar este paciente, pois este possui consultas cadastradas!");
         } else if (exception.getMessage().contains("enderecos")) {
-            return ResponseEntity.badRequest().body("O ID do endereço informado não existe no banco de dados!");
+            return ResponseEntity.badRequest().body("O ID do endereço informado não foi encontrado no banco de dados!");
         }
         return ResponseEntity.badRequest().build();
     }
@@ -44,6 +55,12 @@ public class Handler {
             return ResponseEntity.badRequest().body("Especialidade médica incorreta!");
         } else if (exception.getMessage().contains("EstadoCivil")) {
             return ResponseEntity.badRequest().body("Estado Civil incorreto!");
+        } else if (exception.getMessage().contains("Paciente")) {
+            return ResponseEntity.badRequest().body("O ID do paciente informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Usuário")) {
+            return ResponseEntity.badRequest().body("O ID do usuário informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Endereço")) {
+            return ResponseEntity.badRequest().body("O ID do endereço informado não foi encontrado no banco de dados!");
         }
         return ResponseEntity.badRequest().build();
     }

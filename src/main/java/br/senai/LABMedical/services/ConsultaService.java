@@ -11,6 +11,7 @@ import br.senai.LABMedical.repositories.PacienteRepository;
 import br.senai.LABMedical.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,8 +28,8 @@ public class ConsultaService {
 
     public Consulta cadastra(ConsultaDTO consultaDTO) {
         Consulta consulta = new Consulta(consultaDTO);
-        consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
-        consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
+        consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
+        consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         return repository.save(consulta);
     }
 
@@ -38,12 +39,12 @@ public class ConsultaService {
     }
 
     public void deleta(Long id) {
-        repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta não encontrada!"));
         repository.deleteById(id);
     }
 
     public Consulta atualiza(AtualizaConsulta consultaAtualizada, Long id) {
-        Consulta consulta = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        Consulta consulta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta não encontrada!"));
 
         if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {
             consulta.setMotivo(consultaAtualizada.motivo());
@@ -64,13 +65,13 @@ public class ConsultaService {
         if (consultaAtualizada.paciente_id() != null) {
             Paciente paciente = new Paciente(consultaAtualizada.paciente_id());
             consulta.setPaciente(paciente);
-            consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
+            consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
         }
 
         if (consultaAtualizada.usuario_id() != null) {
             Usuario usuario = new Usuario(consultaAtualizada.usuario_id());
             consulta.setUsuario(usuario);
-            consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
+            consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         }
 
         return repository.save(consulta);
