@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public record AtualizaConsulta(
         @NotBlank(message = "O preenchimento do motivo da consulta é obrigatória!")
         String motivo,
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         LocalDateTime dataHora,
         @NotBlank(message = "O preenchimento da descrição da consulta é obrigatória!")
         String descricao,

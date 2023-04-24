@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 public record AtualizaExame(
         @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
         String nome,
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         LocalDateTime dataHora,
         @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")
         String tipo,

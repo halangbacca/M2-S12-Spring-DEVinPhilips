@@ -10,7 +10,7 @@ public record ExameDTO(
         @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
         String nome,
         @NotNull(message = "O preenchimento da data e hora da realização do exame são obrigatórias!")
-        @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
+        @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
         LocalDateTime dataHora,
         @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")
         String tipo,
