@@ -16,6 +16,7 @@ public record PacienteDTO(
         String nome,
         @NotBlank(message = "O preenchimento do gênero é obrigatório!")
         String genero,
+        @NotNull(message = "O preenchimento da data de nascimento é obrigatória!")
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate dataNascimento,
         @NotBlank(message = "O preenchimento do CPF é obrigatório!")

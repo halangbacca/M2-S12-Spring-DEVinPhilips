@@ -16,14 +16,11 @@ import java.util.List;
 @Service
 public class PacienteService {
 
-    private final PacienteRepository repository;
-
-    public PacienteService(PacienteRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private PacienteRepository repository;
 
     @Autowired
-    public EnderecoRepository enderecoRepository;
+    private EnderecoRepository enderecoRepository;
 
     public Paciente cadastra(PacienteDTO pacienteDTO) {
         Paciente paciente = new Paciente(pacienteDTO);
@@ -86,6 +83,7 @@ public class PacienteService {
         if (pacienteAtualizado.endereco_id() != null) {
             Endereco endereco = new Endereco(pacienteAtualizado.endereco_id());
             paciente.setEndereco(endereco);
+            paciente.setEndereco(enderecoRepository.findById(paciente.getEndereco().getId()).orElseThrow(EntityNotFoundException::new));
         }
 
         return repository.save(paciente);

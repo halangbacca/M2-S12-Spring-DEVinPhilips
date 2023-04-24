@@ -15,6 +15,7 @@ public abstract class Pessoa {
     private String genero;
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
+    @Column(unique = true)
     private String cpf;
     private String rg;
     @Enumerated(EnumType.STRING)

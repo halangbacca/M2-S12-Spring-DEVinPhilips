@@ -4,21 +4,31 @@ import br.senai.LABMedical.dtos.AtualizaConsulta;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
+import br.senai.LABMedical.models.Paciente;
+import br.senai.LABMedical.models.Usuario;
 import br.senai.LABMedical.repositories.ConsultaRepository;
+import br.senai.LABMedical.repositories.PacienteRepository;
+import br.senai.LABMedical.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultaService {
 
-    private final ConsultaRepository repository;
+    @Autowired
+    private ConsultaRepository repository;
 
-    public ConsultaService(ConsultaRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Consulta cadastra(ConsultaDTO consultaDTO) {
         Consulta consulta = new Consulta(consultaDTO);
+        consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
+        consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
         return repository.save(consulta);
     }
 
@@ -49,6 +59,18 @@ public class ConsultaService {
 
         if (consultaAtualizada.dosagem() != null && !consultaAtualizada.dosagem().isEmpty()) {
             consulta.setDosagem(consultaAtualizada.dosagem());
+        }
+
+        if (consultaAtualizada.paciente_id() != null) {
+            Paciente paciente = new Paciente(consultaAtualizada.paciente_id());
+            consulta.setPaciente(paciente);
+            consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(EntityNotFoundException::new));
+        }
+
+        if (consultaAtualizada.usuario_id() != null) {
+            Usuario usuario = new Usuario(consultaAtualizada.usuario_id());
+            consulta.setUsuario(usuario);
+            consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(EntityNotFoundException::new));
         }
 
         return repository.save(consulta);

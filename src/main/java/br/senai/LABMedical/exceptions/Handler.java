@@ -23,15 +23,19 @@ public class Handler {
     @ExceptionHandler(SQLIntegrityConstraintViolationException.class)
     public ResponseEntity<String> trataErro400SQL(SQLIntegrityConstraintViolationException exception) {
         if (exception.getMessage().contains("Duplicate")) {
-            return ResponseEntity.badRequest().body("Este CPF já está cadastrado!");
-        } else if (exception.getMessage().contains("foreign key")) {
-            return ResponseEntity.badRequest().body("Não é possível deletar este paciente, pois este possui exames e/ou consultas cadastradas!");
+            return ResponseEntity.status(409).body("Este CPF já está cadastrado!");
+        } else if (exception.getMessage().contains("exames")) {
+            return ResponseEntity.badRequest().body("Não é possível deletar este paciente, pois este possui exames cadastrados!");
+        } else if (exception.getMessage().contains("consultas")) {
+            return ResponseEntity.badRequest().body("Não é possível deletar este paciente, pois este possui consultas cadastradas!");
+        } else if (exception.getMessage().contains("enderecos")) {
+            return ResponseEntity.badRequest().body("O ID do endereço informado não existe no banco de dados!");
         }
         return ResponseEntity.badRequest().build();
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<String> trataErro400EstadoCivil(HttpMessageNotReadableException exception) {
+    public ResponseEntity<String> trataErro400BadRequest(HttpMessageNotReadableException exception) {
         if (exception.getMessage().contains("java.time.LocalDateTime")) {
             return ResponseEntity.badRequest().body("Formato de data/hora inválidos!");
         } else if (exception.getMessage().contains("java.time.LocalDate")) {
@@ -45,7 +49,7 @@ public class Handler {
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<Exceptions>> trataErro400Validators(MethodArgumentNotValidException exception) {
+    public ResponseEntity<List<Exceptions>> trataErro400Constraints(MethodArgumentNotValidException exception) {
         List<FieldError> erros = exception.getFieldErrors();
         return ResponseEntity.badRequest().body(erros.stream().map(Exceptions::new).toList());
     }

@@ -11,16 +11,16 @@ VALUES ("313.624.040-55", "1990-05-10", "carlos@outlook.com", "SOLTEIRO", "Mascu
 
 # ENDEREÇOS
 INSERT INTO enderecos (bairro, cep, cidade, complemento, estado, logradouro, numero, ponto_referencia)
-VALUES ("São Vicente", "88309-000", "Iajaí", "Casa", "SC", "Rua São Joaquim", 137, "Em frente a panificadora");
+VALUES ("São Vicente", "88309-000", "Itajaí", "Casa", "SC", "Rua São Joaquim", 137, "Em frente a panificadora");
 
 INSERT INTO enderecos (bairro, cep, cidade, complemento, estado, logradouro, numero, ponto_referencia)
-VALUES ("São Vicente", "88309-010", "Iajaí", "Casa", "SC", "Rua Abelardo Luz", 163, "Em frente ao mercado");
+VALUES ("São Vicente", "88309-010", "Itajaí", "Casa", "SC", "Rua Abelardo Luz", 163, "Em frente ao mercado");
 
 INSERT INTO enderecos (bairro, cep, cidade, complemento, estado, logradouro, numero, ponto_referencia)
-VALUES ("Fazenda", "88302-520", "Iajaí", "Casa", "SC", "Rua Lúcio Correia de Mendonça", 439, "Próximo a igreja");
+VALUES ("Fazenda", "88302-520", "Itajaí", "Casa", "SC", "Rua Lúcio Correia de Mendonça", 439, "Próximo a igreja");
 
 INSERT INTO enderecos (bairro, cep, cidade, complemento, estado, logradouro, numero, ponto_referencia)
-VALUES ("Centro", "88302-201", "Iajaí", "Apartamento", "SC", "Rua Uruguai", 456, "Próximo a universidade");
+VALUES ("Centro", "88302-201", "Itajaí", "Apartamento", "SC", "Rua Uruguai", 456, "Próximo a universidade");
 
 # PACIENTES
 INSERT INTO pacientes (cpf, data_nascimento, email, estado_civil, genero, naturalidade, nome, rg, telefone, alergias,

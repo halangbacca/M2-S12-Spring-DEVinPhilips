@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public record ConsultaDTO(
         @NotBlank(message = "O preenchimento do motivo da consulta é obrigatória!")
         String motivo,
+        @NotNull(message = "O preenchimento da data e hora da realização da consulta são obrigatórias!")
         @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
         LocalDateTime dataHora,
         @NotBlank(message = "O preenchimento da descrição da consulta é obrigatória!")

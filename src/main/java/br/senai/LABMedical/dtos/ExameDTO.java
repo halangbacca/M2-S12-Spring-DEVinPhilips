@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public record ExameDTO(
         @NotBlank(message = "O preenchimento do nome do exame é obrigatório!")
         String nome,
+        @NotNull(message = "O preenchimento da data e hora da realização do exame são obrigatórias!")
         @JsonFormat(pattern = "dd/MM/yyyy hh:mm:ss a")
         LocalDateTime dataHora,
         @NotBlank(message = "O preenchimento do tipo de exame é obrigatório!")
@@ -21,6 +22,5 @@ public record ExameDTO(
         @NotNull(message = "O preenchimento do ID do paciente é obrigatório!")
         Long paciente_id,
         @NotNull(message = "O preenchimento do ID do médico é obrigatório!")
-        Long usuario_id
-) {
+        Long usuario_id) {
 }

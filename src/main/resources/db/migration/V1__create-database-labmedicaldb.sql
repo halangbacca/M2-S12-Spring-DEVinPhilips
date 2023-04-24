@@ -10,7 +10,7 @@ CREATE TABLE usuarios
     nome            varchar(100) not null,
     rg              varchar(100) not null,
     telefone        varchar(100) not null,
-    crm             varchar(6)   not null,
+    crm             varchar(100)   not null,
     especialidade   varchar(100) not null,
     senha           varchar(100) not null,
 
