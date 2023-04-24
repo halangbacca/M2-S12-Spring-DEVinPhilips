@@ -10,12 +10,22 @@
 - Lombok
 - Flyway
 
+## Diagrama
+<img src="/home/halan/Área de Trabalho/LABMedical/src/main/java/br/senai/LABMedical/img/digrama.png"/>
+
+## Gravação
+- Inserir link do Google Drive.
+
+## Códigos Oracle
+- Para compensar a utilização do MySQL, transcrevi todos os códigos do MySQL para o Oracle DB.
+- Inserir link do Google Drive.
+
 ## Como executar
 - Clonar o repositório para a sua máquina
-- Baixar e instalar o MySQL
+- Baixar e instalar o banco de dados MySQL
 - Definir um usuário e senha no MySQL
 - Criar a database através do comando "CREATE DATABASE labmedicalbd" ou através de um SGBD (o Flyway manipula apenas a criação do esquema, não a criação do banco de dados)
-- Baixar e instalar um sistema de gerenciamento de banco de dados (SGBDs) como o DBeaver ou Oracle SQL Developer
+- Baixar e instalar um sistema de gerenciamento de banco de dados (SGBDs) como o DBeaver
 - Baixar e instalar o Java Development Kit (JDK) >= 17
 - Baixar e instalar o IntelliJ IDEA ou outra IDE de sua preferência
 - Baixar e instalar o Postman ou Insomnia REST
@@ -26,6 +36,13 @@
 - Executar os comandos no Postman ou Insomnia REST
 
 ## Funcionalidades
+- Carregamento de dados iniciais (Flyway)
+  - Pacientes
+  - Usuários (médicos)
+  - Endereços
+  - Consultas
+  - Exames
+  
 - Cadastros
   - Cadastro de paciente
   - Cadastro de usuário (médico)
@@ -69,8 +86,9 @@
 
 - Exceptions
   - Tratador de erros:
-    - Erro 400 (SQLIntegrityConstraintViolationException e MethodArgumentNotValidException)
-    - Erro 404 (EntityNotFoundException)
+    - Erro 400 (Bad Request)
+    - Erro 404 (Not Found)
+    - Erro 409 (Conflict)
     
 - Data Transfer Object (DTOs)
   - Substituição de classes DTO pelos records, introduzidos de maneira experimental na versão 14 do Java e liberadas de forma oficial na versão 16
@@ -83,3 +101,4 @@
 - Validação de URL
 - Utilização de builders
 - Reaproveitamento de código
+- Refatorar o tratamento de exceções
