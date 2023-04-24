@@ -13,6 +13,8 @@ import java.time.LocalDate;
 public record AtualizaUsuario(
         @NotBlank(message = "O preenchimento do nome é obrigatório!")
         String nome,
+        String cpf,
+        String rg,
         @NotBlank(message = "O preenchimento do gênero é obrigatório!")
         String genero,
         @JsonFormat(pattern = "dd/MM/yyyy")
@@ -29,6 +31,7 @@ public record AtualizaUsuario(
         @NotBlank(message = "O preenchimento do CRM/UF é obrigatório!")
         String crm,
         @Enumerated(EnumType.STRING)
-        Especialidade especialidade
+        Especialidade especialidade,
+        String senha
 ) {
 }

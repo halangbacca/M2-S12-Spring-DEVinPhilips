@@ -46,6 +46,10 @@ public class ConsultaService {
     public Consulta atualiza(AtualizaConsulta consultaAtualizada, Long id) {
         Consulta consulta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta não encontrada!"));
 
+        if (consultaAtualizada.dataHora() != null) {
+            throw new HttpMessageNotReadableException("Data e hora não podem ser alteradas!");
+        }
+
         if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {
             consulta.setMotivo(consultaAtualizada.motivo());
         }

@@ -46,6 +46,10 @@ public class ExameService {
     public Exame atualiza(AtualizaExame exameAtualizado, Long id) {
         Exame exame = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exame não encontrado!"));
 
+        if (exameAtualizado.dataHora() != null) {
+            throw new HttpMessageNotReadableException("Data e hora não podem ser alteradas!");
+        }
+
         if (exameAtualizado.nome() != null && !exameAtualizado.nome().isEmpty()) {
             exame.setNome(exameAtualizado.nome());
         }

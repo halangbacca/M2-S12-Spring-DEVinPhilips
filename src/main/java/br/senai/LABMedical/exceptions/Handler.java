@@ -61,6 +61,14 @@ public class Handler {
             return ResponseEntity.badRequest().body("O ID do usuário informado não foi encontrado no banco de dados!");
         } else if (exception.getMessage().contains("Endereço")) {
             return ResponseEntity.badRequest().body("O ID do endereço informado não foi encontrado no banco de dados!");
+        } else if (exception.getMessage().contains("Data")) {
+            return ResponseEntity.badRequest().body("Data e hora não podem ser alteradas!");
+        } else if (exception.getMessage().contains("RG")) {
+            return ResponseEntity.badRequest().body("O RG do usuário não pode ser alterado!");
+        } else if (exception.getMessage().contains("CPF")) {
+            return ResponseEntity.badRequest().body("O CPF do usuário não pode ser alterado!");
+        } else if (exception.getMessage().contains("senha")) {
+            return ResponseEntity.badRequest().body("A senha do usuário não pode ser alterada!");
         }
         return ResponseEntity.badRequest().build();
     }

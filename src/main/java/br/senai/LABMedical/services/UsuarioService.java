@@ -6,6 +6,7 @@ import br.senai.LABMedical.dtos.UsuarioDTO;
 import br.senai.LABMedical.models.Usuario;
 import br.senai.LABMedical.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,6 +24,18 @@ public class UsuarioService {
 
     public Usuario atualiza(AtualizaUsuario usuarioAtualizado, Long id) {
         Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
+
+        if (usuarioAtualizado.senha() != null) {
+            throw new HttpMessageNotReadableException("A senha não pode ser alterada!");
+        }
+
+        if (usuarioAtualizado.rg() != null) {
+            throw new HttpMessageNotReadableException("O RG não pode ser alterado!");
+        }
+
+        if (usuarioAtualizado.cpf() != null) {
+            throw new HttpMessageNotReadableException("O CPF não pode ser alterado!");
+        }
 
         if (usuarioAtualizado.nome() != null && !usuarioAtualizado.nome().isEmpty()) {
             usuario.setNome(usuarioAtualizado.nome());

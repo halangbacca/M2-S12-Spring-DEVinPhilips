@@ -48,7 +48,14 @@ public class PacienteService {
 
     public Paciente atualiza(AtualizaPaciente pacienteAtualizado, Long id) {
         Paciente paciente = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Paciente não encontrado!"));
-        ;
+
+        if (pacienteAtualizado.rg() != null) {
+            throw new HttpMessageNotReadableException("O RG do usuário não pode ser alterado!");
+        }
+
+        if (pacienteAtualizado.cpf() != null) {
+            throw new HttpMessageNotReadableException("O CPF do usuário não pode ser alterado!");
+        }
 
         if (pacienteAtualizado.nome() != null && !pacienteAtualizado.nome().isEmpty()) {
             paciente.setNome(pacienteAtualizado.nome());

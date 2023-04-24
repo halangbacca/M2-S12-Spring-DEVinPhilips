@@ -34,6 +34,8 @@ public record AtualizaPaciente(
         String numeroConvenio,
         @JsonFormat(pattern = "dd/MM/yyyy")
         LocalDate validadeConvenio,
+        String cpf,
+        String rg,
         @NotNull(message = "O preenchimento do ID do endereço é obrigatório!")
         Long endereco_id
 ) {
