@@ -14,11 +14,16 @@
 <img src="https://github.com/halangbacca/M2-S12-Spring-DEVinPhilips/blob/develop/src/main/java/br/senai/LABMedical/img/digrama.png"/>
 
 ## Gravação
-- Inserir link do Google Drive.
+- https://drive.google.com/drive/folders/1Rx5P0XhnlGEcpfGIYeeFEzGL6iAcIKiy?usp=share_link
 
 ## Códigos Oracle
-- Para compensar a utilização do MySQL, transcrevi todos os códigos do MySQL para o Oracle DB.
-- Inserir link do Google Drive.
+- Para compensar a utilização do MySQL, reescrevi os scripts para o Oracle DB
+- Os arquivos estão na raiz do projeto e hospedados no Google Drive:
+  - https://drive.google.com/drive/folders/1G1JGNqPJXYSIlaJhRE__j_pMpb7eQvsP?usp=share_link
+
+## Collection Postman
+- Os arquivos estão na raiz do projeto e hospedados no Google Drive:
+  - https://drive.google.com/drive/folders/15vxQoqUfyp9wX52El4EdIy4dtMIt4lO6?usp=share_link
 
 ## Como executar
 - Clonar o repositório para a sua máquina

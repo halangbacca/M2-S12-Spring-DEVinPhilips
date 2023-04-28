@@ -1,0 +1,578 @@
+{
+	"info": {
+		"_postman_id": "c1d3d499-5be4-4625-b13e-325f7d884078",
+		"name": "LABMedical",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25426492"
+	},
+	"item": [
+		{
+			"name": "Cadastra Usuário (Médico)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Halan Germano Bacca\",\n    \"genero\": \"Masculino\",\n    \"dataNascimento\": \"21/07/1998\",\n    \"cpf\": \"634.844.385-09\",\n    \"rg\": \"18.892.234-9\",\n    \"estadoCivil\": \"SOLTEIRO\",\n    \"telefone\": \"(47) 12345-6789\",\n    \"email\": \"halan@outlook.com\",\n    \"naturalidade\": \"Itajaiense\",\n    \"crm\": \"5345/SC\",\n    \"especialidade\": \"NEUROLOGIA\",\n    \"senha\": \"halan12345$\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/usuarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra Endereço",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"cep\": \"88309-000\",\n    \"cidade\": \"Itajaí\",\n    \"estado\": \"SC\",\n    \"logradouro\": \"Rua São Joaquim\",\n    \"numero\": 137,\n    \"complemento\": \"Casa\",\n    \"bairro\": \"São Vicente\",\n    \"pontoReferencia\": \"Em frente ao Auto Peças\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enderecos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enderecos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra Paciente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Luciana Lamim\",\n    \"genero\": \"Feminino\",\n    \"dataNascimento\": \"26/06/1966\",\n    \"cpf\": \"418.487.950-09\",\n    \"rg\": \"31.212.537-9\",\n    \"estadoCivil\": \"CASADO\",\n    \"telefone\": \"(47) 12345-6789\",\n    \"email\": \"luciana@hotmail.com\",\n    \"naturalidade\": \"Itajaiense\",\n    \"alergias\": \"AAS\",\n    \"cuidadosEspecificos\": \"Sedentarismo\",\n    \"contatoDeEmergencia\": \"(47) 12345-6789\",\n    \"convenio\": \"UNIMED\",\n    \"numeroConvenio\": \"567\",\n    \"validadeConvenio\": \"21/07/2030\",\n    \"endereco_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/pacientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pacientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra Consulta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"motivo\": \"Suspeita de esporotricose humana\",\n    \"dataHora\": \"20/04/2023 21:11:10\",\n    \"descricao\": \"Esporotricose linfocutânea extensa\",\n    \"medicacao\": \"Itraconazol\",\n    \"dosagem\": \"200 mg uma vez ao dia \",\n    \"usuario_id\": 1,\n    \"paciente_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/consultas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"consultas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastra Exame",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Aspirado de lesões\",\n    \"dataHora\": \"20/04/2023 21:11:10\",\n    \"tipo\": \"Biópsia\",\n    \"laboratorio\": \"Dasa\",\n    \"pdf\": \"www.google.com\",\n    \"resultados\": \"Positivo para esporotricose humana\",\n    \"usuario_id\": 2,\n    \"paciente_id\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/exames",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Pacientes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/pacientes?nome=halan",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pacientes"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "halan"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Paciente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/pacientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pacientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Exame",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/exames/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exames",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Consulta",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/consultas/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"consultas",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Endereços",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/enderecos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"enderecos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista Estatísticas",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/estatisticas",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estatisticas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta Paciente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/pacientes/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pacientes",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta Exame",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/exames/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exames",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deleta Consulta",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/consultas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"consultas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Usuário (Médico)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Daniel da Silva Rosa\",\n    \"genero\": \"Masculino\",\n    \"dataNascimento\": \"03/05/1998\",\n    \"estadoCivil\": \"SOLTEIRO\",\n    \"telefone\": \"(47) 12345-6789\",\n    \"email\": \"daniel@outlook.com\",\n    \"naturalidade\": \"Itajaiense\",\n    \"crm\": \"5535/SC\",\n    \"especialidade\": \"NEUROLOGIA\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/usuarios/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Senha de Usuário (Médico)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"senha\": \"daniel452\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/usuarios/1/senha",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios",
+						"1",
+						"senha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Paciente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Halan Germano Bacca\",\n    \"genero\": \"Masculino\",\n    \"dataNascimento\": \"21/07/1998\",\n    \"estadoCivil\": \"SOLTEIRO\",\n    \"telefone\": \"(47) 997200499\",\n    \"email\": \"halanbacca@outlook.com\",\n    \"naturalidade\": \"Itajaiense\",\n    \"alergias\": \"Nenhuma\",\n    \"cuidadosEspecificos\": \"Sedentarismo\",\n    \"contatoDeEmergencia\": \"(47) 984676858\",\n    \"convenio\": \"SUS\",\n    \"numeroConvenio\": \"555\",\n    \"validadeConvenio\": \"21/07/2030\",\n    \"endereco_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/pacientes/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"pacientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Consulta",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"motivo\": \"Suspeita de esporotricose felina\",\n    \"descricao\": \"Esporotricose linfocutânea extensa\",\n    \"medicacao\": \"Fluconazol\",\n    \"dosagem\": \"100 mg uma vez ao dia \",\n    \"usuario_id\": 1,\n    \"paciente_id\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/consultas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"consultas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Exame",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nome\": \"Aspirado de lesões\",\n    \"tipo\": \"Biópsia de lesões\",\n    \"laboratorio\": \"UNIMED\",\n    \"pdf\": \"www.google.com\",\n    \"resultados\": \"Presença de Sporothrix schenckii\",\n    \"usuario_id\": 3,\n    \"paciente_id\": 3\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/exames/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"exames",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
