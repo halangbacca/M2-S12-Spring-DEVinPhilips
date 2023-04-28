@@ -3,6 +3,8 @@ package br.senai.LABMedical.models;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Data
 @MappedSuperclass
 public abstract class Pessoa {
@@ -12,7 +14,8 @@ public abstract class Pessoa {
     private String nome;
     private String genero;
     @Column(name = "data_nascimento")
-    private String dataNascimento;
+    private LocalDate dataNascimento;
+    @Column(unique = true)
     private String cpf;
     private String rg;
     @Enumerated(EnumType.STRING)

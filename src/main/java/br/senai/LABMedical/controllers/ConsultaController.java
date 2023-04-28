@@ -1,6 +1,6 @@
 package br.senai.LABMedical.controllers;
 
-import br.senai.LABMedical.dtos.AtualizaConsultas;
+import br.senai.LABMedical.dtos.AtualizaConsulta;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
@@ -41,7 +41,7 @@ public class ConsultaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Consulta> atualiza(@RequestBody @Validated AtualizaConsultas consultaAtualizada, @PathVariable Long id) {
+    public ResponseEntity<Consulta> atualiza(@RequestBody @Validated AtualizaConsulta consultaAtualizada, @PathVariable Long id) {
         return ResponseEntity.ok(service.atualiza(consultaAtualizada, id));
     }
 

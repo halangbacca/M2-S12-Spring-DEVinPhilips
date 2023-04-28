@@ -32,14 +32,14 @@ public class Endereco {
     private String pontoReferencia;
 
     public Endereco(EnderecoDTO enderecoDTO) {
-        this.cep = enderecoDTO.getCep();
-        this.cidade = enderecoDTO.getCidade();
-        this.estado = enderecoDTO.getEstado();
-        this.logradouro = enderecoDTO.getLogradouro();
-        this.numero = enderecoDTO.getNumero();
-        this.complemento = enderecoDTO.getComplemento();
-        this.bairro = enderecoDTO.getBairro();
-        this.pontoReferencia = enderecoDTO.getPontoReferencia();
+        this.cep = enderecoDTO.cep();
+        this.cidade = enderecoDTO.cidade();
+        this.estado = enderecoDTO.estado();
+        this.logradouro = enderecoDTO.logradouro();
+        this.numero = enderecoDTO.numero();
+        this.complemento = enderecoDTO.complemento();
+        this.bairro = enderecoDTO.bairro();
+        this.pontoReferencia = enderecoDTO.pontoReferencia();
     }
 
     public Endereco(Long enderecoId) {

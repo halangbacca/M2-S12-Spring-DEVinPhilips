@@ -1,10 +1,12 @@
 package br.senai.LABMedical.services;
 
 import br.senai.LABMedical.dtos.AtualizaSenhaUsuario;
-import br.senai.LABMedical.dtos.AtualizaUsuarios;
+import br.senai.LABMedical.dtos.AtualizaUsuario;
 import br.senai.LABMedical.dtos.UsuarioDTO;
 import br.senai.LABMedical.models.Usuario;
 import br.senai.LABMedical.repositories.UsuarioRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,13 +17,25 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public void cadastra(UsuarioDTO usuarioDTO) {
+    public Usuario cadastra(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario(usuarioDTO);
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
-    public void atualiza(AtualizaUsuarios usuarioAtualizado, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Usuario atualiza(AtualizaUsuario usuarioAtualizado, Long id) {
+        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
+
+        if (usuarioAtualizado.senha() != null) {
+            throw new HttpMessageNotReadableException("A senha não pode ser alterada!");
+        }
+
+        if (usuarioAtualizado.rg() != null) {
+            throw new HttpMessageNotReadableException("O RG não pode ser alterado!");
+        }
+
+        if (usuarioAtualizado.cpf() != null) {
+            throw new HttpMessageNotReadableException("O CPF não pode ser alterado!");
+        }
 
         if (usuarioAtualizado.nome() != null && !usuarioAtualizado.nome().isEmpty()) {
             usuario.setNome(usuarioAtualizado.nome());
@@ -31,7 +45,7 @@ public class UsuarioService {
             usuario.setGenero(usuarioAtualizado.genero());
         }
 
-        if (usuarioAtualizado.dataNascimento() != null && !usuarioAtualizado.dataNascimento().isEmpty()) {
+        if (usuarioAtualizado.dataNascimento() != null) {
             usuario.setDataNascimento(usuarioAtualizado.dataNascimento());
         }
 
@@ -59,17 +73,17 @@ public class UsuarioService {
             usuario.setEspecialidade(usuarioAtualizado.especialidade());
         }
 
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
-    public void atualiza(AtualizaSenhaUsuario senhaAtualizada, Long id) {
-        Usuario usuario = repository.findById(id).orElseThrow(RuntimeException::new);
+    public Usuario atualiza(AtualizaSenhaUsuario senhaAtualizada, Long id) {
+        Usuario usuario = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado!"));
 
         if (senhaAtualizada.senha() != null && !senhaAtualizada.senha().isEmpty()) {
             usuario.setSenha(senhaAtualizada.senha());
         }
 
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
 }

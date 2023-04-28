@@ -4,6 +4,8 @@ import br.senai.LABMedical.dtos.ConsultaDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,23 +17,23 @@ public class Consulta {
     private Long id;
     private String motivo;
     @Column(name = "data_hora")
-    private String dataHora;
+    private LocalDateTime dataHora;
     private String descricao;
     private String medicacao;
     private String dosagem;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paciente paciente;
 
     public Consulta(ConsultaDTO consultaDTO) {
-        this.motivo = consultaDTO.getMotivo();
-        this.dataHora = consultaDTO.getDataHora();
-        this.descricao = consultaDTO.getDescricao();
-        this.medicacao = consultaDTO.getMedicacao();
-        this.dosagem = consultaDTO.getDosagem();
-        this.usuario = new Usuario(consultaDTO.getUsuario_id());
-        this.paciente = new Paciente(consultaDTO.getPaciente_id());
+        this.motivo = consultaDTO.motivo();
+        this.dataHora = consultaDTO.dataHora();
+        this.descricao = consultaDTO.descricao();
+        this.medicacao = consultaDTO.medicacao();
+        this.dosagem = consultaDTO.dosagem();
+        this.usuario = new Usuario(consultaDTO.usuario_id());
+        this.paciente = new Paciente(consultaDTO.paciente_id());
     }
 
 }

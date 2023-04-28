@@ -1,24 +1,35 @@
 package br.senai.LABMedical.services;
 
-import br.senai.LABMedical.dtos.AtualizaConsultas;
+import br.senai.LABMedical.dtos.AtualizaConsulta;
 import br.senai.LABMedical.dtos.ConsultaDTO;
 import br.senai.LABMedical.dtos.ListagemConsultas;
 import br.senai.LABMedical.models.Consulta;
+import br.senai.LABMedical.models.Paciente;
+import br.senai.LABMedical.models.Usuario;
 import br.senai.LABMedical.repositories.ConsultaRepository;
+import br.senai.LABMedical.repositories.PacienteRepository;
+import br.senai.LABMedical.repositories.UsuarioRepository;
 import jakarta.persistence.EntityNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ConsultaService {
 
-    private final ConsultaRepository repository;
+    @Autowired
+    private ConsultaRepository repository;
 
-    public ConsultaService(ConsultaRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     public Consulta cadastra(ConsultaDTO consultaDTO) {
         Consulta consulta = new Consulta(consultaDTO);
+        consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
+        consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         return repository.save(consulta);
     }
 
@@ -28,12 +39,16 @@ public class ConsultaService {
     }
 
     public void deleta(Long id) {
-        repository.findById(id).orElseThrow(EntityNotFoundException::new);
+        repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta não encontrada!"));
         repository.deleteById(id);
     }
 
-    public Consulta atualiza(AtualizaConsultas consultaAtualizada, Long id) {
-        Consulta consulta = repository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public Consulta atualiza(AtualizaConsulta consultaAtualizada, Long id) {
+        Consulta consulta = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Consulta não encontrada!"));
+
+        if (consultaAtualizada.dataHora() != null) {
+            throw new HttpMessageNotReadableException("Data e hora não podem ser alteradas!");
+        }
 
         if (consultaAtualizada.motivo() != null && !consultaAtualizada.motivo().isEmpty()) {
             consulta.setMotivo(consultaAtualizada.motivo());
@@ -49,6 +64,18 @@ public class ConsultaService {
 
         if (consultaAtualizada.dosagem() != null && !consultaAtualizada.dosagem().isEmpty()) {
             consulta.setDosagem(consultaAtualizada.dosagem());
+        }
+
+        if (consultaAtualizada.paciente_id() != null) {
+            Paciente paciente = new Paciente(consultaAtualizada.paciente_id());
+            consulta.setPaciente(paciente);
+            consulta.setPaciente(pacienteRepository.findById(consulta.getPaciente().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Paciente não encontrado!")));
+        }
+
+        if (consultaAtualizada.usuario_id() != null) {
+            Usuario usuario = new Usuario(consultaAtualizada.usuario_id());
+            consulta.setUsuario(usuario);
+            consulta.setUsuario(usuarioRepository.findById(consulta.getUsuario().getId()).orElseThrow(() -> new HttpMessageNotReadableException("Usuário não encontrado!")));
         }
 
         return repository.save(consulta);

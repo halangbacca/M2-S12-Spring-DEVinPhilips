@@ -1,6 +1,6 @@
 package br.senai.LABMedical.controllers;
 
-import br.senai.LABMedical.dtos.AtualizaPacientes;
+import br.senai.LABMedical.dtos.AtualizaPaciente;
 import br.senai.LABMedical.dtos.ListagemPacientes;
 import br.senai.LABMedical.dtos.PacienteDTO;
 import br.senai.LABMedical.models.Paciente;
@@ -8,7 +8,9 @@ import br.senai.LABMedical.services.PacienteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,8 +23,11 @@ public class PacienteController {
     }
 
     @PostMapping
-    public void cadastra(@RequestBody @Validated PacienteDTO pacienteDTO) {
-        service.cadastra(pacienteDTO);
+    public ResponseEntity<Paciente> cadastra(@RequestBody @Validated PacienteDTO pacienteDTO, UriComponentsBuilder builder) {
+        Paciente paciente = service.cadastra(pacienteDTO);
+
+        URI uri = builder.path("/api/pacientes/{id}").buildAndExpand(paciente.getId()).toUri();
+        return ResponseEntity.created(uri).body(paciente);
     }
 
     @GetMapping
@@ -42,7 +47,7 @@ public class PacienteController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Paciente> atualiza(@RequestBody @Validated AtualizaPacientes pacienteAtualizado, @PathVariable Long id) {
+    public ResponseEntity<Paciente> atualiza(@RequestBody @Validated AtualizaPaciente pacienteAtualizado, @PathVariable Long id) {
         return ResponseEntity.ok(service.atualiza(pacienteAtualizado, id));
     }
 
