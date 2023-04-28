@@ -11,7 +11,7 @@
 - Flyway
 
 ## Diagrama
-<img src="https://github.com/halangbacca/M2-S12-Spring-DEVinPhilips/blob/develop/src/main/java/br/senai/LABMedical/img/digrama.png"/>
+<img src="https://github.com/halangbacca/M2-S12-Spring-DEVinPhilips/blob/develop/img/digrama.png"/>
 
 ## Gravação
 - https://drive.google.com/drive/folders/1Rx5P0XhnlGEcpfGIYeeFEzGL6iAcIKiy?usp=share_link
