@@ -13,32 +13,26 @@
 ## Diagrama
 <img src="https://github.com/halangbacca/M2-S12-Spring-DEVinPhilips/blob/develop/img/digrama.png"/>
 
-## Gravação
-- https://drive.google.com/drive/folders/1Rx5P0XhnlGEcpfGIYeeFEzGL6iAcIKiy?usp=share_link
-
 ## Códigos Oracle
-- Para compensar a utilização do MySQL, reescrevi os scripts para o Oracle DB
-- Os arquivos estão na raiz do projeto e hospedados no Google Drive:
-  - https://drive.google.com/drive/folders/1G1JGNqPJXYSIlaJhRE__j_pMpb7eQvsP?usp=share_link
+- Caso você deseje utilizar o banco de dados Oracle, é possível substituir as migrations do Flyway pelos scripts PL/SQL que estão na raiz do projeto, dentro do diretório oracle
 
 ## Collection Postman
-- Os arquivos estão na raiz do projeto e hospedados no Google Drive:
-  - https://drive.google.com/drive/folders/15vxQoqUfyp9wX52El4EdIy4dtMIt4lO6?usp=share_link
+- Os arquivos utilizados nas requisições HTTP estão na raiz do projeto, dentro do diretório postman
 
 ## Como executar
 - Clonar o repositório para a sua máquina
-- Baixar e instalar o banco de dados MySQL
+- Baixar e instalar o sistema de gerenciamento de banco de dados (SGBD) MySQL
 - Definir um usuário e senha no MySQL
-- Criar a database através do comando "CREATE DATABASE labmedicalbd" ou através de um SGBD (o Flyway manipula apenas a criação do esquema, não a criação do banco de dados)
-- Baixar e instalar um sistema de gerenciamento de banco de dados (SGBDs) como o DBeaver
+- Criar a database através do comando "CREATE DATABASE labmedicalbd" ou através de um cliente SQL (o Flyway manipula apenas a criação do esquema, não a criação do banco de dados)
 - Baixar e instalar o Java Development Kit (JDK) >= 17
+- Baixar e instalar um cliente SQL, como o DBeaver, MySQL Workbench ou Oracle SQL Developer
 - Baixar e instalar o IntelliJ IDEA ou outra IDE de sua preferência
 - Baixar e instalar o Postman ou Insomnia REST
 - Baixar a collection do Postman ou Insomnia REST
-- Configurar o arquivo application.properties definindo o usuário e senha do seu banco de dados MySQL
-- Executar o código através da IDE
-- O Flyway criará um novo banco de dados e carregará os dados inicias
-- Executar os comandos no Postman ou Insomnia REST
+- Configurar o arquivo application.properties, definindo o usuário e senha do seu banco de dados MySQL
+- Executar a API REST através da IDE
+- O Flyway irá carregar os dados inicias
+- Executar as requisições no Postman ou Insomnia REST
 
 ## Funcionalidades
 - Carregamento de dados iniciais (Flyway)
@@ -75,7 +69,7 @@
 
 - Atualizações
   - Atualização de usuário (médico) por ID
-  - Atualização da senha de usuário por ID
+  - Atualização da senha de usuário (médico) por ID
   - Atualização de paciente por ID
   - Atualização de consulta por ID
   - Atualização de exame por ID
@@ -98,7 +92,7 @@
 - Data Transfer Object (DTOs)
   - Substituição de classes DTO pelos records, introduzidos de maneira experimental na versão 14 do Java e liberadas de forma oficial na versão 16
 
-## Melhorias a serem implementadas
+## Melhorias que podem ser implementadas
 - Validação de número de telefone
 - Validação de gênero
 - Validação de CEP
